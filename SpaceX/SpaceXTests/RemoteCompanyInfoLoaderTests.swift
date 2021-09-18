@@ -15,24 +15,32 @@ class RemoteCompanyInfoLoader {
     }
 
     func load() {
-        client.requestedURL = URL(string: "https://a-url.com")
+        client.get(from: URL(string: "https://a-url.com")!)
     }
 }
 
-class HTTPClient {
+protocol HTTPClient {
+    func get(from url: URL)
+}
+
+class HTTPClientSpy: HTTPClient {
     var requestedURL: URL?
+
+    func get(from url: URL) {
+        requestedURL = url
+    }
 }
 
 class RemoteCompanyInfoLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
-        let client = HTTPClient()
+        let client = HTTPClientSpy()
         _ = RemoteCompanyInfoLoader(client: client)
 
         XCTAssertNil(client.requestedURL)
     }
 
     func test_load_requestDataFromURL() {
-        let client = HTTPClient()
+        let client = HTTPClientSpy()
         let sut = RemoteCompanyInfoLoader(client: client)
 
         sut.load()
