@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CompanyInfo {
+public struct CompanyInfo: Equatable {
     let companyName: String
     let founderName: String
     let year: Int

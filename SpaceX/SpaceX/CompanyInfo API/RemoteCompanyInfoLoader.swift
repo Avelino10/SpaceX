@@ -25,19 +25,28 @@ public class RemoteCompanyInfoLoader {
         case invalidData
     }
 
+    public enum Result: Equatable {
+        case success
+        case failure(Error)
+    }
+
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
 
-    public func load(completion: @escaping (Error) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { result in
 
             switch result {
-                case .success:
-                    completion(.invalidData)
+                case let .success(data, _):
+                    if let _ = try? JSONSerialization.jsonObject(with: data) {
+                        completion(.success)
+                    } else {
+                        completion(.failure(.invalidData))
+                    }
                 case .failure:
-                    completion(.connectivity)
+                    completion(.failure(.connectivity))
             }
         }
     }
