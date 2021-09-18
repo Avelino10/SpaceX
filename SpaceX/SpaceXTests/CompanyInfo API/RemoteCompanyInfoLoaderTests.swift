@@ -105,20 +105,14 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteCompanyInfoLoader(url: url, client: client)
 
-        trackMemoryLeaks(client, file: file, line: line)
-        trackMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
 
         return (sut, client)
     }
 
     private func failure(_ error: RemoteCompanyInfoLoader.Error) -> RemoteCompanyInfoLoader.Result {
         .failure(error)
-    }
-
-    private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
-        }
     }
 
     private func expect(_ sut: RemoteCompanyInfoLoader, toCompleteWith expectedResult: RemoteCompanyInfoLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
