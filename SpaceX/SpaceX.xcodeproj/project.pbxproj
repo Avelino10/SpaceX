@@ -15,6 +15,7 @@
 		FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */; };
 		FD78F3C326F61A04008B8443 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */; };
 		FD78F3C826F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
+		FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				FD78F3B526F5FF73008B8443 /* RemoteCompanyInfoLoader.swift */,
 				FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */,
+				FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */,
 			);
 			path = "CompanyInfo API";
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */,
+				FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */,
 				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
 				FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */,
 				FD78F3B626F5FF73008B8443 /* RemoteCompanyInfoLoader.swift in Sources */,
