@@ -26,7 +26,7 @@ public class RemoteCompanyInfoLoader {
     }
 
     public enum Result: Equatable {
-        case success
+        case success(CompanyInfo)
         case failure(Error)
     }
 
@@ -39,9 +39,9 @@ public class RemoteCompanyInfoLoader {
         client.get(from: url) { result in
 
             switch result {
-                case let .success(data, _):
-                    if let _ = try? JSONSerialization.jsonObject(with: data) {
-                        completion(.success)
+                case let .success(data, response):
+                    if response.statusCode == 200, let info = try? JSONDecoder().decode(Info.self, from: data) {
+                        completion(.success(info.companyInfo))
                     } else {
                         completion(.failure(.invalidData))
                     }
@@ -49,5 +49,18 @@ public class RemoteCompanyInfoLoader {
                     completion(.failure(.connectivity))
             }
         }
+    }
+}
+
+private struct Info: Decodable {
+    let name: String
+    let founder: String
+    let founded: Int
+    let employees: Int
+    let launch_sites: Int
+    let valuation: Int
+
+    var companyInfo: CompanyInfo {
+        CompanyInfo(companyName: name, founderName: founder, year: founded, employees: employees, launchSites: launch_sites, valuation: valuation)
     }
 }

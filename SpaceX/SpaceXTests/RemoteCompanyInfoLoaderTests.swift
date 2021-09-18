@@ -50,7 +50,7 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
 
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: .failure(.invalidData), when: {
-                client.complete(withStatusCode: code, at: index)
+                client.complete(withStatusCode: code, data: Data(), at: index)
             })
         }
     }
@@ -64,6 +64,25 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         })
     }
 
+    func test_load_deliversCompanyInfoOn200HTTPResponseWithValidJSON() {
+        let (sut, client) = makeSUT()
+
+        let companyInfo = CompanyInfo(companyName: "company", founderName: "founder", year: 2021, employees: 0, launchSites: 0, valuation: 0)
+
+        let companyInfoJSON = [
+            "name": companyInfo.companyName,
+            "founder": companyInfo.founderName,
+            "founded": companyInfo.year,
+            "employees": companyInfo.employees,
+            "launch_sites": companyInfo.launchSites,
+            "valuation": companyInfo.valuation,
+        ] as [String: Any]
+
+        expect(sut, toCompleteWith: .success(companyInfo), when: {
+            let json = try! JSONSerialization.data(withJSONObject: companyInfoJSON)
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
     // MARK: - Helpers
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteCompanyInfoLoader, client: HTTPClientSpy) {
@@ -96,7 +115,7 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
 
-        func complete(withStatusCode code: Int, data: Data = Data(), at index: Int = 0) {
+        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
             let response = HTTPURLResponse(
                 url: messages[index].url,
                 statusCode: code,
