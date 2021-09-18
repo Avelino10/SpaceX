@@ -10,6 +10,7 @@
 		FD78F38A26F5F8C7008B8443 /* SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; };
 		FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */; };
 		FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */; };
+		FD78F3AC26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		FD78F39026F5F8C7008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
 		FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoLoader.swift; sourceTree = "<group>"; };
+		FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCompanyInfoLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F39026F5F8C7008B8443 /* Info.plist */,
+				FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */,
 			);
 			path = SpaceXTests;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 					};
 					FD78F38826F5F8C7008B8443 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -211,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F3AC26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
@@ -409,6 +415,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -417,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
