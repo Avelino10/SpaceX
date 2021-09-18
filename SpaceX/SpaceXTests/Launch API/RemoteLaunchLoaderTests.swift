@@ -15,6 +15,7 @@ class RemoteLaunchLoader {
     public typealias Result = LaunchLoader.Result
 
     public enum Error: Swift.Error {
+        case invalidData
         case connectivity
     }
 
@@ -24,8 +25,13 @@ class RemoteLaunchLoader {
     }
 
     func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { _ in
-            completion(.failure(Error.connectivity))
+        client.get(from: url) { result in
+            switch result {
+                case .success:
+                    completion(.failure(Error.invalidData))
+                case .failure:
+                    completion(.failure(Error.connectivity))
+            }
         }
     }
 }
@@ -63,6 +69,18 @@ class RemoteLaunchLoaderTests: XCTestCase {
             let clientError = NSError(domain: "an error", code: 0)
             client.complete(with: clientError)
         })
+    }
+
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+
+        let samples = [199, 201, 300, 400, 500]
+
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
+                client.complete(withStatusCode: code, data: Data(), at: index)
+            })
+        }
     }
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchLoader, client: HTTPClientSpy) {
