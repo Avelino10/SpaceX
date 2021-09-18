@@ -83,6 +83,15 @@ class RemoteLaunchLoaderTests: XCTestCase {
         }
     }
 
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
+            let invalidJSON = Data("invalidJSON".utf8)
+            client.complete(withStatusCode: 200, data: invalidJSON)
+        })
+    }
+
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteLaunchLoader(url: url, client: client)
