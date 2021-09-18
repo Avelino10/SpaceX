@@ -20,6 +20,7 @@
 		FD78F3D626F6244A008B8443 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */; };
 		FD78F42026F62711008B8443 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F41F26F62711008B8443 /* Launch.swift */; };
 		FD78F42626F629B4008B8443 /* LaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42526F629B4008B8443 /* LaunchLoader.swift */; };
+		FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		FD78F41F26F62711008B8443 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		FD78F42526F629B4008B8443 /* LaunchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLoader.swift; sourceTree = "<group>"; };
+		FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,10 @@
 		FD78F38D26F5F8C7008B8443 /* SpaceXTests */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F43226F62A4E008B8443 /* Helpers */,
+				FD78F42926F629F2008B8443 /* Main API */,
 				FD78F3BF26F617DF008B8443 /* CompanyInfo API */,
+				FD78F42A26F62A03008B8443 /* Launch API */,
 				FD78F39026F5F8C7008B8443 /* Info.plist */,
 			);
 			path = SpaceXTests;
@@ -129,21 +134,9 @@
 		FD78F3BF26F617DF008B8443 /* CompanyInfo API */ = {
 			isa = PBXGroup;
 			children = (
-				FD78F3C626F61DEC008B8443 /* Helpers */,
 				FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */,
-				FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "CompanyInfo API";
-			sourceTree = "<group>";
-		};
-		FD78F3C626F61DEC008B8443 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */,
-				FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */,
-				FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		FD78F41D26F626D7008B8443 /* Main API */ = {
@@ -162,6 +155,40 @@
 				FD78F42526F629B4008B8443 /* LaunchLoader.swift */,
 			);
 			path = "Launch Feature";
+			sourceTree = "<group>";
+		};
+		FD78F42926F629F2008B8443 /* Main API */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F43126F62A45008B8443 /* Helpers */,
+				FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */,
+			);
+			path = "Main API";
+			sourceTree = "<group>";
+		};
+		FD78F42A26F62A03008B8443 /* Launch API */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */,
+			);
+			path = "Launch API";
+			sourceTree = "<group>";
+		};
+		FD78F43126F62A45008B8443 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FD78F43226F62A4E008B8443 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */,
+				FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +317,7 @@
 				FD78F3AC26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift in Sources */,
 				FD78F3D226F62397008B8443 /* HTTPClientSpy.swift in Sources */,
 				FD78F3C326F61A04008B8443 /* URLSessionHTTPClientTests.swift in Sources */,
+				FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */,
 				FD78F3C826F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				FD78F3D626F6244A008B8443 /* URLProtocolStub.swift in Sources */,
 			);
