@@ -84,6 +84,21 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         })
     }
 
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: RemoteCompanyInfoLoader? = RemoteCompanyInfoLoader(url: url, client: client)
+
+        var capturedResults = [RemoteCompanyInfoLoader.Result]()
+        sut?.load { capturedResults.append($0) }
+
+        sut = nil
+        let invalidJSON = Data("invalidJSON".utf8)
+        client.complete(withStatusCode: 200, data: invalidJSON)
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteCompanyInfoLoader, client: HTTPClientSpy) {
@@ -100,6 +115,9 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         addTeardownBlock { [weak instance] in
             XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
         }
+    }
+
+    private func makeJSON() {
     }
 
     private func expect(_ sut: RemoteCompanyInfoLoader, toCompleteWith result: RemoteCompanyInfoLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
