@@ -12,6 +12,7 @@
 		FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */; };
 		FD78F3AC26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */; };
 		FD78F3B626F5FF73008B8443 /* RemoteCompanyInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3B526F5FF73008B8443 /* RemoteCompanyInfoLoader.swift */; };
+		FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoLoader.swift; sourceTree = "<group>"; };
 		FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCompanyInfoLoaderTests.swift; sourceTree = "<group>"; };
 		FD78F3B526F5FF73008B8443 /* RemoteCompanyInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCompanyInfoLoader.swift; sourceTree = "<group>"; };
+		FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F3B526F5FF73008B8443 /* RemoteCompanyInfoLoader.swift */,
+				FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */,
 			);
 			path = "CompanyInfo API";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			files = (
 				FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */,
 				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
+				FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */,
 				FD78F3B626F5FF73008B8443 /* RemoteCompanyInfoLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
