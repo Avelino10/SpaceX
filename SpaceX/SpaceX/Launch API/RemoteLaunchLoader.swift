@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteLaunchLoader {
+public class RemoteLaunchLoader: LaunchLoader {
     private let url: URL
     private let client: HTTPClient
 
@@ -28,8 +28,8 @@ public class RemoteLaunchLoader {
             guard self != nil else { return }
 
             switch result {
-                case let .success((data, _)):
-                    if let apiLaunch = try? JSONDecoder().decode([APILaunch].self, from: data) {
+                case let .success((data, response)):
+                    if response.statusCode == 200, let apiLaunch = try? JSONDecoder().decode([APILaunch].self, from: data) {
                         completion(.success(apiLaunch.map { $0.launch }))
                     } else {
                         completion(.failure(Error.invalidData))
