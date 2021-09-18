@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteCompanyInfoLoader {
+public class RemoteCompanyInfoLoader: CompanyInfoLoader {
     private let url: URL
     private let client: HTTPClient
 
@@ -16,10 +16,7 @@ public class RemoteCompanyInfoLoader {
         case invalidData
     }
 
-    public enum Result: Equatable {
-        case success(CompanyInfo)
-        case failure(Error)
-    }
+    public typealias Result = LoadCompanyResult
 
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -34,10 +31,10 @@ public class RemoteCompanyInfoLoader {
                     if response.statusCode == 200, let info = try? JSONDecoder().decode(Info.self, from: data) {
                         completion(.success(info.companyInfo))
                     } else {
-                        completion(.failure(.invalidData))
+                        completion(.failure(Error.invalidData))
                     }
                 case .failure:
-                    completion(.failure(.connectivity))
+                    completion(.failure(Error.connectivity))
             }
         }
     }

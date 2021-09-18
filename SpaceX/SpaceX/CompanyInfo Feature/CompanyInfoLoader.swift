@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum LoadCompanyResult {
+public enum LoadCompanyResult {
     case success(CompanyInfo)
-    case error(Error)
+    case failure(Error)
 }
 
-protocol CompanyInfoLoader {
+public protocol CompanyInfoLoader {
     func load(completion: @escaping (LoadCompanyResult) -> Void)
 }

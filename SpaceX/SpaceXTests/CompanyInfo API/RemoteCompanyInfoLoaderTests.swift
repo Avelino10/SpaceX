@@ -37,7 +37,7 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(.connectivity), when: {
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
             let clientError = NSError(domain: "an error", code: 0)
             client.complete(with: clientError)
         })
@@ -49,7 +49,7 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
 
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(.invalidData), when: {
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
                 client.complete(withStatusCode: code, data: Data(), at: index)
             })
         }
@@ -58,7 +58,7 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(.invalidData), when: {
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
             let invalidJSON = Data("invalidJSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         })
@@ -111,22 +111,35 @@ class RemoteCompanyInfoLoaderTests: XCTestCase {
         return (sut, client)
     }
 
+    private func failure(_ error: RemoteCompanyInfoLoader.Error) -> RemoteCompanyInfoLoader.Result {
+        .failure(error)
+    }
+
     private func trackMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
         addTeardownBlock { [weak instance] in
             XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
         }
     }
 
-    private func makeJSON() {
-    }
+    private func expect(_ sut: RemoteCompanyInfoLoader, toCompleteWith expectedResult: RemoteCompanyInfoLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
 
-    private func expect(_ sut: RemoteCompanyInfoLoader, toCompleteWith result: RemoteCompanyInfoLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        var capturedResults = [RemoteCompanyInfoLoader.Result]()
-        sut.load { capturedResults.append($0) }
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+                case let (.success(receivedInfo), .success(expectedInfo)):
+                    XCTAssertEqual(receivedInfo, expectedInfo, file: file, line: line)
+                case let (.failure(receivedError as RemoteCompanyInfoLoader.Error), .failure(expectedError as RemoteCompanyInfoLoader.Error)):
+                    XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                default:
+                    XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+
+            exp.fulfill()
+        }
 
         action()
 
-        XCTAssertEqual(capturedResults, [result], file: file, line: line)
+        wait(for: [exp], timeout: 1.0)
     }
 
     private class HTTPClientSpy: HTTPClient {

@@ -87,8 +87,8 @@
 		FD78F38D26F5F8C7008B8443 /* SpaceXTests */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F3BF26F617DF008B8443 /* CompanyInfo API */,
 				FD78F39026F5F8C7008B8443 /* Info.plist */,
-				FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */,
 			);
 			path = SpaceXTests;
 			sourceTree = "<group>";
@@ -107,6 +107,14 @@
 			children = (
 				FD78F3B526F5FF73008B8443 /* RemoteCompanyInfoLoader.swift */,
 				FD78F3BB26F60CA5008B8443 /* HTTPClient.swift */,
+			);
+			path = "CompanyInfo API";
+			sourceTree = "<group>";
+		};
+		FD78F3BF26F617DF008B8443 /* CompanyInfo API */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F3AB26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift */,
 			);
 			path = "CompanyInfo API";
 			sourceTree = "<group>";
