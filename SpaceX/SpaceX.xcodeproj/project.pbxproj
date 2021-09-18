@@ -16,6 +16,7 @@
 		FD78F3C326F61A04008B8443 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */; };
 		FD78F3C826F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
 		FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */; };
+		FD78F3D226F62397008B8443 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		FD78F3C226F61A04008B8443 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */,
+				FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F3AC26F5FB50008B8443 /* RemoteCompanyInfoLoaderTests.swift in Sources */,
+				FD78F3D226F62397008B8443 /* HTTPClientSpy.swift in Sources */,
 				FD78F3C326F61A04008B8443 /* URLSessionHTTPClientTests.swift in Sources */,
 				FD78F3C826F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
