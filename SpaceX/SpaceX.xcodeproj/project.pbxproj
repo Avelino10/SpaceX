@@ -21,6 +21,7 @@
 		FD78F42026F62711008B8443 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F41F26F62711008B8443 /* Launch.swift */; };
 		FD78F42626F629B4008B8443 /* LaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42526F629B4008B8443 /* LaunchLoader.swift */; };
 		FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */; };
+		FD78F43826F63515008B8443 /* RemoteLaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		FD78F41F26F62711008B8443 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		FD78F42526F629B4008B8443 /* LaunchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLoader.swift; sourceTree = "<group>"; };
 		FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchLoaderTests.swift; sourceTree = "<group>"; };
+		FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				FD78F3A426F5FA9B008B8443 /* CompanyInfo Feature */,
 				FD78F3B426F5FF65008B8443 /* CompanyInfo API */,
 				FD78F41E26F626E5008B8443 /* Launch Feature */,
+				FD78F43626F63507008B8443 /* Launch API */,
 				FD78F38426F5F8C7008B8443 /* Info.plist */,
 			);
 			path = SpaceX;
@@ -189,6 +192,14 @@
 				FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FD78F43626F63507008B8443 /* Launch API */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */,
+			);
+			path = "Launch API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */,
+				FD78F43826F63515008B8443 /* RemoteLaunchLoader.swift in Sources */,
 				FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */,
 				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
 				FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */,

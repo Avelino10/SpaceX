@@ -8,34 +8,6 @@
 import SpaceX
 import XCTest
 
-class RemoteLaunchLoader {
-    private let url: URL
-    private let client: HTTPClient
-
-    public typealias Result = LaunchLoader.Result
-
-    public enum Error: Swift.Error {
-        case invalidData
-        case connectivity
-    }
-
-    init(url: URL, client: HTTPClient) {
-        self.client = client
-        self.url = url
-    }
-
-    func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { result in
-            switch result {
-                case .success:
-                    completion(.failure(Error.invalidData))
-                case .failure:
-                    completion(.failure(Error.connectivity))
-            }
-        }
-    }
-}
-
 class RemoteLaunchLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
@@ -92,6 +64,21 @@ class RemoteLaunchLoaderTests: XCTestCase {
         })
     }
 
+    func test_load_deliversLaunchOn200HTTPResponseWithValidJSON() {
+        let (sut, client) = makeSUT()
+
+        let launch1 = makeLaunch(name: "Missin1", rocketName: "Rocket1")
+
+        let launch2 = makeLaunch(name: "Missin2", rocketName: "Rocket2")
+
+        let launches = [launch1.model, launch2.model]
+
+        expect(sut, toCompleteWith: .success(launches), when: {
+            let json = makeLaunchesJSON([launch1.json, launch2.json])
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteLaunchLoader(url: url, client: client)
@@ -100,6 +87,29 @@ class RemoteLaunchLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
 
         return (sut, client)
+    }
+
+    private func makeLaunch(name: String, rocketName: String) -> (model: Launch, json: [String: Any]) {
+        let launch1 = Launch(missionName: name, launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(missionPatch: URL(string: "http://a-url.com")!))
+
+        let launch1JSON = [
+            "mission_name": launch1.missionName,
+            "launch_date_utc": launch1.launchDate,
+            "launch_success": launch1.launchSuccess,
+            "rocket": [
+                "rocket_name": launch1.rocket.name,
+                "rocket_type": launch1.rocket.type,
+            ],
+            "links": [
+                "mission_patch": launch1.links.missionPatch.absoluteString,
+            ],
+        ] as [String: Any]
+
+        return (launch1, launch1JSON)
+    }
+
+    private func makeLaunchesJSON(_ items: [[String: Any]]) -> Data {
+        return try! JSONSerialization.data(withJSONObject: items)
     }
 
     private func failure(_ error: RemoteLaunchLoader.Error) -> RemoteLaunchLoader.Result {

@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol LaunchLoader {
-    typealias Result = Swift.Result<Launch, Error>
+    typealias Result = Swift.Result<[Launch], Error>
 
     func load(completion: @escaping (Result) -> Void)
 }
