@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FD78F38A26F5F8C7008B8443 /* SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; };
+		FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */; };
+		FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,8 @@
 		FD78F38426F5F8C7008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F38926F5F8C7008B8443 /* SpaceXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F39026F5F8C7008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
+		FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfoLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 		FD78F38226F5F8C7008B8443 /* SpaceX */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F3A426F5FA9B008B8443 /* CompanyInfo Feature */,
 				FD78F38426F5F8C7008B8443 /* Info.plist */,
 			);
 			path = SpaceX;
@@ -78,6 +83,15 @@
 				FD78F39026F5F8C7008B8443 /* Info.plist */,
 			);
 			path = SpaceXTests;
+			sourceTree = "<group>";
+		};
+		FD78F3A426F5FA9B008B8443 /* CompanyInfo Feature */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */,
+				FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */,
+			);
+			path = "CompanyInfo Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +154,7 @@
 				TargetAttributes = {
 					FD78F37F26F5F8C7008B8443 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					FD78F38826F5F8C7008B8443 = {
 						CreatedOnToolsVersion = 12.4;
@@ -187,6 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */,
+				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +349,7 @@
 		FD78F39526F5F8C7008B8443 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -348,6 +366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -355,6 +374,7 @@
 		FD78F39626F5F8C7008B8443 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -378,6 +398,7 @@
 		FD78F39826F5F8C7008B8443 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
@@ -395,6 +416,7 @@
 		FD78F39926F5F8C7008B8443 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
