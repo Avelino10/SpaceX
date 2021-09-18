@@ -16,7 +16,7 @@ public class RemoteCompanyInfoLoader: CompanyInfoLoader {
         case invalidData
     }
 
-    public typealias Result = LoadCompanyResult
+    public typealias Result = CompanyInfoLoader.Result
 
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -27,7 +27,7 @@ public class RemoteCompanyInfoLoader: CompanyInfoLoader {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {
-                case let .success(data, response):
+                case let .success((data, response)):
                     if response.statusCode == 200, let info = try? JSONDecoder().decode(Info.self, from: data) {
                         completion(.success(info.companyInfo))
                     } else {

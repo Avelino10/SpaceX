@@ -7,11 +7,8 @@
 
 import Foundation
 
-public enum LoadCompanyResult {
-    case success(CompanyInfo)
-    case failure(Error)
-}
-
 public protocol CompanyInfoLoader {
-    func load(completion: @escaping (LoadCompanyResult) -> Void)
+    typealias Result = Swift.Result<CompanyInfo, Error>
+
+    func load(completion: @escaping (Result) -> Void)
 }
