@@ -12,13 +12,20 @@ class RemoteLaunchLoader {
     private let url: URL
     private let client: HTTPClient
 
+    public typealias Result = LaunchLoader.Result
+
+    public enum Error: Swift.Error {
+        case connectivity
+    }
+
     init(url: URL, client: HTTPClient) {
         self.client = client
         self.url = url
     }
 
-    func load() {
+    func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { _ in
+            completion(.failure(Error.connectivity))
         }
     }
 }
@@ -34,7 +41,7 @@ class RemoteLaunchLoaderTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.load()
+        sut.load { _ in }
 
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -43,10 +50,19 @@ class RemoteLaunchLoaderTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.load()
-        sut.load()
+        sut.load { _ in }
+        sut.load { _ in }
 
         XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+
+    func test_load_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
+            let clientError = NSError(domain: "an error", code: 0)
+            client.complete(with: clientError)
+        })
     }
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchLoader, client: HTTPClientSpy) {
@@ -57,5 +73,30 @@ class RemoteLaunchLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
 
         return (sut, client)
+    }
+
+    private func failure(_ error: RemoteLaunchLoader.Error) -> RemoteLaunchLoader.Result {
+        .failure(error)
+    }
+
+    private func expect(_ sut: RemoteLaunchLoader, toCompleteWith expectedResult: RemoteLaunchLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+                case let (.success(receivedInfo), .success(expectedInfo)):
+                    XCTAssertEqual(receivedInfo, expectedInfo, file: file, line: line)
+                case let (.failure(receivedError as RemoteLaunchLoader.Error), .failure(expectedError as RemoteLaunchLoader.Error)):
+                    XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                default:
+                    XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+
+            exp.fulfill()
+        }
+
+        action()
+
+        wait(for: [exp], timeout: 1.0)
     }
 }
