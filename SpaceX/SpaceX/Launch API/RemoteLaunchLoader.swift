@@ -29,7 +29,7 @@ public class RemoteLaunchLoader: LaunchLoader {
 
             switch result {
                 case let .success((data, response)):
-                    if response.statusCode == 200, let apiLaunch = try? JSONDecoder().decode([APILaunch].self, from: data) {
+                    if response.isOK, let apiLaunch = try? JSONDecoder().decode([APILaunch].self, from: data) {
                         completion(.success(apiLaunch.map { $0.launch }))
                     } else {
                         completion(.failure(Error.invalidData))

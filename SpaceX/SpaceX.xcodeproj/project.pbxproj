@@ -41,6 +41,8 @@
 		FD78F4F626F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */; };
 		FD78F4FD26F8D51D008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
 		FD78F50526F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */; };
+		FD78F51226F8D943008B8443 /* RemoteLaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F51126F8D943008B8443 /* RemoteLaunchImageDataLoader.swift */; };
+		FD78F51726F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F51626F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,8 @@
 		FD78F4ED26F8CAA2008B8443 /* Launch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Launch.strings; sourceTree = "<group>"; };
 		FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 		FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchImageDataLoaderTests.swift; sourceTree = "<group>"; };
+		FD78F51126F8D943008B8443 /* RemoteLaunchImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchImageDataLoader.swift; sourceTree = "<group>"; };
+		FD78F51626F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */,
+				FD78F51126F8D943008B8443 /* RemoteLaunchImageDataLoader.swift */,
+				FD78F51626F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift */,
 			);
 			path = "Launch API";
 			sourceTree = "<group>";
@@ -565,11 +571,13 @@
 			files = (
 				FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */,
 				FD78F43826F63515008B8443 /* RemoteLaunchLoader.swift in Sources */,
+				FD78F51726F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */,
 				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
 				FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */,
 				FD78F42026F62711008B8443 /* Launch.swift in Sources */,
 				FD78F4FD26F8D51D008B8443 /* LaunchImageDataLoader.swift in Sources */,
+				FD78F51226F8D943008B8443 /* RemoteLaunchImageDataLoader.swift in Sources */,
 				FD78F42626F629B4008B8443 /* LaunchLoader.swift in Sources */,
 				FD78F3B626F5FF73008B8443 /* RemoteCompanyInfoLoader.swift in Sources */,
 			);
