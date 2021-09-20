@@ -73,6 +73,30 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected two cancelled image URL requests once second image is also not visible anymore")
     }
 
+    func test_launchImageView_rendersImageLoadedFromURL() {
+        let mission0 = makeMission(name: "mission0", rocketName: "rocket0", url: URL(string: "http://url-0.com")!)
+        let mission1 = makeMission(name: "mission1", rocketName: "rocket1", url: URL(string: "http://url-1.com")!)
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeLaunchLoading(with: [mission0, mission1])
+
+        let view0 = sut.simulateLaunchImageViewVisible(at: 0)
+        let view1 = sut.simulateLaunchImageViewVisible(at: 1)
+        XCTAssertEqual(view0?.renderedImage, .none, "Expected no image for first view while loading first image")
+        XCTAssertEqual(view1?.renderedImage, .none, "Expected no image for second view while loading second image")
+
+        let imageData0 = UIImage.make(withColor: .red).pngData()!
+        loader.completeImageLoading(with: imageData0, at: 0)
+        XCTAssertEqual(view0?.renderedImage, imageData0, "Expected image for first view once first image loading completes successfully")
+        XCTAssertEqual(view1?.renderedImage, .none, "Expected no image state change for second view once first image loading completes successfully")
+
+        let imageData1 = UIImage.make(withColor: .blue).pngData()!
+        loader.completeImageLoading(with: imageData1, at: 1)
+        XCTAssertEqual(view0?.renderedImage, imageData0, "Expected no image state change for first view once second image loading completes successfully")
+        XCTAssertEqual(view1?.renderedImage, imageData1, "Expected image for second view once second image loading completes successfully")
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, loader: LoaderSpy) {
@@ -152,13 +176,22 @@ final class LaunchesViewControllerTests: XCTestCase {
             }
         }
 
-        private(set) var loadedImageURLs = [URL]()
+        private var imageRequests = [(url: URL, completion: (LaunchImageDataLoader.Result) -> Void)]()
+
+        var loadedImageURLs: [URL] {
+            imageRequests.map { $0.url }
+        }
+
         private(set) var cancelledImageURLs = [URL]()
 
-        func loadImageData(from url: URL) -> LaunchImageDataLoaderTask {
-            loadedImageURLs.append(url)
+        func loadImageData(from url: URL, completion: @escaping (LaunchImageDataLoader.Result) -> Void) -> LaunchImageDataLoaderTask {
+            imageRequests.append((url, completion))
 
             return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
+        }
+
+        func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
+            imageRequests[index].completion(.success(imageData))
         }
     }
 }
@@ -203,5 +236,9 @@ private extension LaunchCell {
 
     var rocketInfoText: String? {
         rocketInfo.text
+    }
+
+    var renderedImage: Data? {
+        missionImage.image?.pngData()
     }
 }

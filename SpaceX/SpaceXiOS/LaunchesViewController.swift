@@ -13,7 +13,8 @@ public protocol LaunchImageDataLoaderTask {
 }
 
 public protocol LaunchImageDataLoader {
-    func loadImageData(from url: URL) -> LaunchImageDataLoaderTask
+    typealias Result = Swift.Result<Data, Error>
+    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> LaunchImageDataLoaderTask
 }
 
 public final class LaunchesViewController: UITableViewController {
@@ -52,8 +53,13 @@ public final class LaunchesViewController: UITableViewController {
         cell.missionName.text = cellModel.missionName
         cell.missionDate.text = cellModel.launchDate
         cell.rocketInfo.text = "\(cellModel.rocket.name)/\(cellModel.rocket.type)"
-
-        tasks[indexPath] = imageLoader?.loadImageData(from: cellModel.links.missionPatch)
+        cell.missionImage.image = nil
+        tasks[indexPath] = imageLoader?.loadImageData(from: cellModel.links.missionPatch) { [weak cell] result in
+            let data = try? result.get()
+            if let image = data.map(UIImage.init) {
+                cell?.missionImage.image = image
+            }
+        }
 
         return cell
     }

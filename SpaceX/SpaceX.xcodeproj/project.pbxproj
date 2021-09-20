@@ -29,6 +29,7 @@
 		FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
 		FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48026F8833D008B8443 /* LaunchesViewController.swift */; };
 		FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48526F8854A008B8443 /* LaunchCell.swift */; };
+		FD78F49C26F896FE008B8443 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		FD78F45126F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F48026F8833D008B8443 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
 		FD78F48526F8854A008B8443 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
+		FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 		FD78F44E26F652BE008B8443 /* SpaceXiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F49A26F896F0008B8443 /* Helpers */,
 				FD78F45126F652BE008B8443 /* Info.plist */,
 				FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */,
 			);
@@ -289,6 +292,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD78F49A26F896F0008B8443 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +519,7 @@
 			files = (
 				FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */,
 				FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				FD78F49C26F896FE008B8443 /* UIImage+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
