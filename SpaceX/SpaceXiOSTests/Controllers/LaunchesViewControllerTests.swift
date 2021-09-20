@@ -100,7 +100,7 @@ final class LaunchesViewControllerTests: XCTestCase {
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = LaunchesViewController(companyInfoLoader: loader, launchLoader: loader, imageLoader: loader)
+        let sut = LaunchUIComposer.launchComposedWith(companyInfoLoader: loader, launchLoader: loader, imageLoader: loader)
 
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

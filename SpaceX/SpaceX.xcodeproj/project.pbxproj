@@ -36,6 +36,7 @@
 		FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
 		FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */; };
 		FD78F4D726F89C5B008B8443 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD78F4D626F89C5B008B8443 /* Launch.storyboard */; };
+		FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageDataLoader.swift; sourceTree = "<group>"; };
 		FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageCellController.swift; sourceTree = "<group>"; };
 		FD78F4D626F89C5B008B8443 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +284,7 @@
 		FD78F44326F652BE008B8443 /* SpaceXiOS */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F4DB26F8AFA5008B8443 /* Composers */,
 				FD78F4BC26F89889008B8443 /* Launch Image Loader */,
 				FD78F4A526F89751008B8443 /* Views */,
 				FD78F4A426F8974C008B8443 /* Controllers */,
@@ -358,6 +361,14 @@
 				FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */,
 			);
 			path = "Launch Image Loader";
+			sourceTree = "<group>";
+		};
+		FD78F4DB26F8AFA5008B8443 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */,
+			);
+			path = Composers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -567,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */,
 				FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */,
 				FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */,
 				FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */,

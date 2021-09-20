@@ -12,14 +12,17 @@ final class LaunchImageCellController {
     private var task: LaunchImageDataLoaderTask?
     private let model: Launch
     private let imageLoader: LaunchImageDataLoader
+    private var cell: LaunchCell?
 
     init(model: Launch, imageLoader: LaunchImageDataLoader) {
         self.model = model
         self.imageLoader = imageLoader
     }
 
-    func view() -> UITableViewCell {
-        let cell = LaunchCell()
+    func view(in tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LaunchCell") as! LaunchCell
+        self.cell = cell
+
         cell.missionName.text = model.missionName
         cell.missionDate.text = model.launchDate
         cell.rocketInfo.text = "\(model.rocket.name)/\(model.rocket.type)"
@@ -34,6 +37,7 @@ final class LaunchImageCellController {
     }
 
     deinit {
+        cell = nil
         task?.cancel()
     }
 }

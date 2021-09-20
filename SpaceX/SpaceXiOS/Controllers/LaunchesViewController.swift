@@ -9,18 +9,11 @@ import SpaceX
 import UIKit
 
 public final class LaunchesViewController: UITableViewController {
-    private var companyInfoLoader: CompanyInfoLoader?
-    private var launchLoader: LaunchLoader?
-    private var imageLoader: LaunchImageDataLoader?
+    var companyInfoLoader: CompanyInfoLoader?
+    var launchLoader: LaunchLoader?
+    var imageLoader: LaunchImageDataLoader?
     private var tableModel = [Launch]()
     private var cellControllers = [IndexPath: LaunchImageCellController]()
-
-    public convenience init(companyInfoLoader: CompanyInfoLoader, launchLoader: LaunchLoader, imageLoader: LaunchImageDataLoader) {
-        self.init()
-        self.companyInfoLoader = companyInfoLoader
-        self.launchLoader = launchLoader
-        self.imageLoader = imageLoader
-    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +32,7 @@ public final class LaunchesViewController: UITableViewController {
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view()
+        return cellController(forRowAt: indexPath).view(in: tableView)
     }
 
     override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
