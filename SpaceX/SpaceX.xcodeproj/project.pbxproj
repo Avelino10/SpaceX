@@ -34,6 +34,7 @@
 		FD78F4B026F897AE008B8443 /* LaunchCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */; };
 		FD78F4B526F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */; };
 		FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
+		FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchCell+TestHelpers.swift"; sourceTree = "<group>"; };
 		FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageDataLoader.swift; sourceTree = "<group>"; };
+		FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
+				FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */,
 				FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */,
 				FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */,
 				FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */,

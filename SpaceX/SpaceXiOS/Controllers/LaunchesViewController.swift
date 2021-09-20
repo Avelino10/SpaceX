@@ -13,7 +13,7 @@ public final class LaunchesViewController: UITableViewController {
     private var launchLoader: LaunchLoader?
     private var imageLoader: LaunchImageDataLoader?
     private var tableModel = [Launch]()
-    private var tasks = [IndexPath: LaunchImageDataLoaderTask]()
+    private var cellControllers = [IndexPath: LaunchImageCellController]()
 
     public convenience init(companyInfoLoader: CompanyInfoLoader, launchLoader: LaunchLoader, imageLoader: LaunchImageDataLoader) {
         self.init()
@@ -39,24 +39,22 @@ public final class LaunchesViewController: UITableViewController {
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellModel = tableModel[indexPath.row]
-        let cell = LaunchCell()
-        cell.missionName.text = cellModel.missionName
-        cell.missionDate.text = cellModel.launchDate
-        cell.rocketInfo.text = "\(cellModel.rocket.name)/\(cellModel.rocket.type)"
-        cell.missionImage.image = nil
-        tasks[indexPath] = imageLoader?.loadImageData(from: cellModel.links.missionPatch) { [weak cell] result in
-            let data = try? result.get()
-            if let image = data.map(UIImage.init) {
-                cell?.missionImage.image = image
-            }
-        }
-
-        return cell
+        return cellController(forRowAt: indexPath).view()
     }
 
     override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        tasks[indexPath]?.cancel()
-        tasks[indexPath] = nil
+        removeCellController(forRowAt: indexPath)
+    }
+
+    private func cellController(forRowAt indexPath: IndexPath) -> LaunchImageCellController {
+        let cellModel = tableModel[indexPath.row]
+        let cellController = LaunchImageCellController(model: cellModel, imageLoader: imageLoader!)
+        cellControllers[indexPath] = cellController
+
+        return cellController
+    }
+
+    private func removeCellController(forRowAt indexPath: IndexPath) {
+        cellControllers[indexPath] = nil
     }
 }
