@@ -27,6 +27,7 @@
 		FD78F46E26F8809F008B8443 /* SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; };
 		FD78F46F26F8809F008B8443 /* SpaceX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
+		FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48026F8833D008B8443 /* LaunchesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		FD78F44526F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F44A26F652BE008B8443 /* SpaceXiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F45126F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD78F48026F8833D008B8443 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F44526F652BE008B8443 /* Info.plist */,
+				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
 			);
 			path = SpaceXiOS;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 					};
 					FD78F44126F652BE008B8443 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					FD78F44926F652BE008B8443 = {
 						CreatedOnToolsVersion = 12.4;
@@ -490,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +744,7 @@
 		FD78F45426F652BE008B8443 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -756,6 +762,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -764,6 +771,7 @@
 		FD78F45526F652BE008B8443 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -790,6 +798,7 @@
 		FD78F45726F652BE008B8443 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SpaceXiOSTests/Info.plist;
@@ -811,6 +820,7 @@
 		FD78F45826F652BE008B8443 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SpaceXiOSTests/Info.plist;

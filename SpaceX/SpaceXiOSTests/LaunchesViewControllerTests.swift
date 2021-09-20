@@ -6,55 +6,50 @@
 //
 
 import SpaceX
-import UIKit
+import SpaceXiOS
 import XCTest
-
-final class LaunchesViewController: UIViewController {
-    private var loader: LaunchLoader?
-    convenience init(loader: LaunchLoader) {
-        self.init()
-        self.loader = loader
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        loader?.load { _ in }
-    }
-}
 
 final class LaunchesViewControllerTests: XCTestCase {
     func test_init_doesNotLoadLaunches() {
-        let (_, loader) = makeSUT()
+        let (_, launchLoader, companyInfoLoader) = makeSUT()
 
-        XCTAssertEqual(loader.loadCallCount, 0)
+        XCTAssertEqual(launchLoader.loadLaunchCallCount, 0)
+        XCTAssertEqual(companyInfoLoader.loadCompanyInfoCallCount, 0)
     }
 
-    func test_viewDidLoad_loadsLaunches() {
-        let (sut, loader) = makeSUT()
+    func test_viewDidLoad_loadsLaunchesAndCompanyInfo() {
+        let (sut, launchLoader, companyInfoLoader) = makeSUT()
 
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(loader.loadCallCount, 1)
+        XCTAssertEqual(launchLoader.loadLaunchCallCount, 1)
+        XCTAssertEqual(companyInfoLoader.loadCompanyInfoCallCount, 1)
     }
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, loader: LoaderSpy) {
-        let loader = LoaderSpy()
-        let sut = LaunchesViewController(loader: loader)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, launchLoader: LoaderSpy, companyInfoLoader: LoaderSpy) {
+        let launchLoader = LoaderSpy()
+        let companyInfoLoader = LoaderSpy()
+        let sut = LaunchesViewController(companyInfoLoader: companyInfoLoader, launchLoader: launchLoader)
 
-        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(launchLoader, file: file, line: line)
+        trackForMemoryLeaks(companyInfoLoader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
 
-        return (sut, loader)
+        return (sut, launchLoader, companyInfoLoader)
     }
 
-    class LoaderSpy: LaunchLoader {
-        private(set) var loadCallCount: Int = 0
+    class LoaderSpy: LaunchLoader, CompanyInfoLoader {
+        private(set) var loadLaunchCallCount: Int = 0
+        private(set) var loadCompanyInfoCallCount: Int = 0
 
         func load(completion: @escaping (LaunchLoader.Result) -> Void) {
-            loadCallCount += 1
+            loadLaunchCallCount += 1
+        }
+
+        func load(completion: @escaping (CompanyInfoLoader.Result) -> Void) {
+            loadCompanyInfoCallCount += 1
         }
     }
 }
