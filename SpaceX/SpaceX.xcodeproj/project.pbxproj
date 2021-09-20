@@ -18,12 +18,15 @@
 		FD78F3CE26F62079008B8443 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */; };
 		FD78F3D226F62397008B8443 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */; };
 		FD78F3D626F6244A008B8443 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */; };
+		FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */; };
 		FD78F42026F62711008B8443 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F41F26F62711008B8443 /* Launch.swift */; };
 		FD78F42626F629B4008B8443 /* LaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42526F629B4008B8443 /* LaunchLoader.swift */; };
 		FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */; };
 		FD78F43826F63515008B8443 /* RemoteLaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */; };
 		FD78F44B26F652BE008B8443 /* SpaceXiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F44226F652BE008B8443 /* SpaceXiOS.framework */; };
-		FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */; };
+		FD78F46E26F8809F008B8443 /* SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; };
+		FD78F46F26F8809F008B8443 /* SpaceX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +44,28 @@
 			remoteGlobalIDString = FD78F44126F652BE008B8443;
 			remoteInfo = SpaceXiOS;
 		};
+		FD78F47026F8809F008B8443 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD78F37726F5F8C7008B8443 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD78F37F26F5F8C7008B8443;
+			remoteInfo = SpaceX;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FD78F47226F8809F008B8443 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FD78F46F26F8809F008B8443 /* SpaceX.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FD78F38026F5F8C7008B8443 /* SpaceX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +82,7 @@
 		FD78F3CD26F62079008B8443 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		FD78F3D126F62397008B8443 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		FD78F3D526F6244A008B8443 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewControllerTests.swift; sourceTree = "<group>"; };
 		FD78F41F26F62711008B8443 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		FD78F42526F629B4008B8443 /* LaunchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLoader.swift; sourceTree = "<group>"; };
 		FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchLoaderTests.swift; sourceTree = "<group>"; };
@@ -66,7 +91,6 @@
 		FD78F44526F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F44A26F652BE008B8443 /* SpaceXiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F45126F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F46E26F8809F008B8443 /* SpaceX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +136,7 @@
 				FD78F44326F652BE008B8443 /* SpaceXiOS */,
 				FD78F44E26F652BE008B8443 /* SpaceXiOSTests */,
 				FD78F38126F5F8C7008B8443 /* Products */,
+				FD78F46D26F8809F008B8443 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +278,13 @@
 			path = SpaceXiOSTests;
 			sourceTree = "<group>";
 		};
+		FD78F46D26F8809F008B8443 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -316,10 +349,12 @@
 				FD78F43E26F652BE008B8443 /* Sources */,
 				FD78F43F26F652BE008B8443 /* Frameworks */,
 				FD78F44026F652BE008B8443 /* Resources */,
+				FD78F47226F8809F008B8443 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FD78F47126F8809F008B8443 /* PBXTargetDependency */,
 			);
 			name = SpaceXiOS;
 			productName = SpaceXiOS;
@@ -463,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */,
+				FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +514,11 @@
 			isa = PBXTargetDependency;
 			target = FD78F44126F652BE008B8443 /* SpaceXiOS */;
 			targetProxy = FD78F44C26F652BE008B8443 /* PBXContainerItemProxy */;
+		};
+		FD78F47126F8809F008B8443 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD78F37F26F5F8C7008B8443 /* SpaceX */;
+			targetProxy = FD78F47026F8809F008B8443 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -648,6 +690,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -667,6 +710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -687,6 +731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
