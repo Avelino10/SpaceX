@@ -33,13 +33,14 @@
 		FD78F4A826F89778008B8443 /* LaunchesViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4A726F89778008B8443 /* LaunchesViewController+TestHelpers.swift */; };
 		FD78F4B026F897AE008B8443 /* LaunchCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */; };
 		FD78F4B526F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */; };
-		FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
 		FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */; };
 		FD78F4D726F89C5B008B8443 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD78F4D626F89C5B008B8443 /* Launch.storyboard */; };
 		FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */; };
 		FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */; };
 		FD78F4EE26F8CAA2008B8443 /* Launch.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD78F4ED26F8CAA2008B8443 /* Launch.strings */; };
 		FD78F4F626F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */; };
+		FD78F4FD26F8D51D008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
+		FD78F50526F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Dequeueing.swift"; sourceTree = "<group>"; };
 		FD78F4ED26F8CAA2008B8443 /* Launch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Launch.strings; sourceTree = "<group>"; };
 		FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
+		FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchImageDataLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 		FD78F41E26F626E5008B8443 /* Launch Feature */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */,
 				FD78F41F26F62711008B8443 /* Launch.swift */,
 				FD78F42526F629B4008B8443 /* LaunchLoader.swift */,
 			);
@@ -258,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */,
+				FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */,
 			);
 			path = "Launch API";
 			sourceTree = "<group>";
@@ -292,7 +296,6 @@
 			children = (
 				FD78F4EC26F8CA94008B8443 /* Localization */,
 				FD78F4DB26F8AFA5008B8443 /* Composers */,
-				FD78F4BC26F89889008B8443 /* Launch Image Loader */,
 				FD78F4A526F89751008B8443 /* Views */,
 				FD78F4A426F8974C008B8443 /* Controllers */,
 				FD78F44526F652BE008B8443 /* Info.plist */,
@@ -362,14 +365,6 @@
 				FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		FD78F4BC26F89889008B8443 /* Launch Image Loader */ = {
-			isa = PBXGroup;
-			children = (
-				FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */,
-			);
-			path = "Launch Image Loader";
 			sourceTree = "<group>";
 		};
 		FD78F4DB26F8AFA5008B8443 /* Composers */ = {
@@ -574,6 +569,7 @@
 				FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */,
 				FD78F3BC26F60CA5008B8443 /* HTTPClient.swift in Sources */,
 				FD78F42026F62711008B8443 /* Launch.swift in Sources */,
+				FD78F4FD26F8D51D008B8443 /* LaunchImageDataLoader.swift in Sources */,
 				FD78F42626F629B4008B8443 /* LaunchLoader.swift in Sources */,
 				FD78F3B626F5FF73008B8443 /* RemoteCompanyInfoLoader.swift in Sources */,
 			);
@@ -587,6 +583,7 @@
 				FD78F3D226F62397008B8443 /* HTTPClientSpy.swift in Sources */,
 				FD78F3C326F61A04008B8443 /* URLSessionHTTPClientTests.swift in Sources */,
 				FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */,
+				FD78F50526F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift in Sources */,
 				FD78F3C826F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				FD78F3D626F6244A008B8443 /* URLProtocolStub.swift in Sources */,
 			);
@@ -599,7 +596,6 @@
 				FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */,
 				FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */,
 				FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */,
-				FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */,
 				FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */,
 				FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */,
 			);
