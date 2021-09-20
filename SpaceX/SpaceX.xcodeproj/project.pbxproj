@@ -23,6 +23,7 @@
 		FD78F42C26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F42B26F62A1E008B8443 /* RemoteLaunchLoaderTests.swift */; };
 		FD78F43826F63515008B8443 /* RemoteLaunchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F43726F63515008B8443 /* RemoteLaunchLoader.swift */; };
 		FD78F44B26F652BE008B8443 /* SpaceXiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F44226F652BE008B8443 /* SpaceXiOS.framework */; };
+		FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		FD78F44526F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F44A26F652BE008B8443 /* SpaceXiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F45126F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				FD78F45126F652BE008B8443 /* Info.plist */,
+				FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */,
 			);
 			path = SpaceXiOSTests;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 					};
 					FD78F44926F652BE008B8443 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -458,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +745,7 @@
 		FD78F45726F652BE008B8443 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SpaceXiOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -751,6 +757,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avelino.SpaceXiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -759,6 +766,7 @@
 		FD78F45826F652BE008B8443 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SpaceXiOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
