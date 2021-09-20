@@ -19,11 +19,15 @@ class RemoteLaunchImageDataLoader {
     }
 
     func loadImageData(from url: URL, completion: @escaping (LaunchImageDataLoader.Result) -> Void) {
-        client.get(from: url) { result in
+        client.get(from: url) { [weak self] result in
+            guard self != nil else { return }
             switch result {
-                case .success:
-                    completion(.failure(Error.invalidData))
-
+                case let .success((data, response)):
+                    if response.statusCode == 200, !data.isEmpty {
+                        completion(.success(data))
+                    } else {
+                        completion(.failure(Error.invalidData))
+                    }
                 case let .failure(error):
                     completion(.failure(error))
             }
@@ -77,9 +81,40 @@ class RemoteLaunchImageDataLoaderTests: XCTestCase {
         }
     }
 
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOn200HTTPResponseWithEmptyData() {
+        let (sut, client) = makeSUT()
+
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
+            let emptyData = Data()
+            client.complete(withStatusCode: 200, data: emptyData)
+        })
+    }
+
+    func test_loadImageDataFromURL_deliversNonEmptyReceivedDataOn200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        let nonEmptyData = anyData()
+
+        expect(sut, toCompleteWith: .success(nonEmptyData), when: {
+            client.complete(withStatusCode: 200, data: nonEmptyData)
+        })
+    }
+
+    func test_loadImageDataFromURL_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: RemoteLaunchImageDataLoader? = RemoteLaunchImageDataLoader(client: client)
+
+        var capturedResults = [LaunchImageDataLoader.Result]()
+        sut?.loadImageData(from: anyURL()) { capturedResults.append($0) }
+
+        sut = nil
+        client.complete(withStatusCode: 200, data: anyData())
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+
     // MARK: - Helpers
 
-    private func makeSUT(url: URL = URL(string: "http://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchImageDataLoader, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = anyURL(), file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLaunchImageDataLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteLaunchImageDataLoader(client: client)
         trackForMemoryLeaks(client, file: file, line: line)
@@ -139,4 +174,8 @@ class RemoteLaunchImageDataLoaderTests: XCTestCase {
             messages[index].completion(.success((data, response)))
         }
     }
+}
+
+private func anyURL() -> URL {
+    URL(string: "http://a-url.com")!
 }
