@@ -28,6 +28,7 @@
 		FD78F46F26F8809F008B8443 /* SpaceX.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3C726F61E01008B8443 /* XCTestCase+MemoryLeakTracking.swift */; };
 		FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48026F8833D008B8443 /* LaunchesViewController.swift */; };
+		FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48526F8854A008B8443 /* LaunchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		FD78F44A26F652BE008B8443 /* SpaceXiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F45126F652BE008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F48026F8833D008B8443 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
+		FD78F48526F8854A008B8443 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 			children = (
 				FD78F44526F652BE008B8443 /* Info.plist */,
 				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
+				FD78F48526F8854A008B8443 /* LaunchCell.swift */,
 			);
 			path = SpaceXiOS;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */,
 				FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
