@@ -8,15 +8,21 @@
 import SpaceX
 import UIKit
 
+public protocol LaunchImageDataLoader {
+    func loadImageData(from url: URL)
+}
+
 public final class LaunchesViewController: UITableViewController {
     private var companyInfoLoader: CompanyInfoLoader?
     private var launchLoader: LaunchLoader?
+    private var imageLoader: LaunchImageDataLoader?
     private var tableModel = [Launch]()
 
-    public convenience init(companyInfoLoader: CompanyInfoLoader, launchLoader: LaunchLoader) {
+    public convenience init(companyInfoLoader: CompanyInfoLoader, launchLoader: LaunchLoader, imageLoader: LaunchImageDataLoader) {
         self.init()
         self.companyInfoLoader = companyInfoLoader
         self.launchLoader = launchLoader
+        self.imageLoader = imageLoader
     }
 
     override public func viewDidLoad() {
@@ -41,6 +47,8 @@ public final class LaunchesViewController: UITableViewController {
         cell.missionName.text = cellModel.missionName
         cell.missionDate.text = cellModel.launchDate
         cell.rocketInfo.text = "\(cellModel.rocket.name)/\(cellModel.rocket.type)"
+
+        imageLoader?.loadImageData(from: cellModel.links.missionPatch)
 
         return cell
     }

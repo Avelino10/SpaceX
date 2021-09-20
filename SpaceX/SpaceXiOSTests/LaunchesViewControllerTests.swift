@@ -12,19 +12,19 @@ import XCTest
 
 final class LaunchesViewControllerTests: XCTestCase {
     func test_init_doesNotLoadLaunches() {
-        let (_, launchLoader, companyInfoLoader) = makeSUT()
+        let (_, loader) = makeSUT()
 
-        XCTAssertEqual(launchLoader.loadLaunchCallCount, 0)
-        XCTAssertEqual(companyInfoLoader.loadCompanyInfoCallCount, 0)
+        XCTAssertEqual(loader.loadLaunchCallCount, 0)
+        XCTAssertEqual(loader.loadCompanyInfoCallCount, 0)
     }
 
     func test_viewDidLoad_loadsLaunchesAndCompanyInfo() {
-        let (sut, launchLoader, companyInfoLoader) = makeSUT()
+        let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(launchLoader.loadLaunchCallCount, 1)
-        XCTAssertEqual(companyInfoLoader.loadCompanyInfoCallCount, 1)
+        XCTAssertEqual(loader.loadLaunchCallCount, 1)
+        XCTAssertEqual(loader.loadCompanyInfoCallCount, 1)
     }
 
     func test_loadLaunchCompletion_rendersSuccessfullyLoadedLaunch() {
@@ -32,27 +32,41 @@ final class LaunchesViewControllerTests: XCTestCase {
         let mission1 = makeMission(name: "mission1", rocketName: "rocket1")
         let mission2 = makeMission(name: "mission2", rocketName: "rocket2")
         let mission3 = makeMission(name: "mission3", rocketName: "rocket3")
-        let (sut, launchLoader, _) = makeSUT()
+        let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
 
-        launchLoader.completeLaunchLoading(with: [mission0, mission1, mission2, mission3], at: 0)
+        loader.completeLaunchLoading(with: [mission0, mission1, mission2, mission3])
         assertThat(sut, isRendering: [mission0, mission1, mission2, mission3])
+    }
+
+    func test_launchImageView_loadsImageURLWhenVisible() {
+        let mission0 = makeMission(name: "mission0", rocketName: "rocket0", url: URL(string: "http://url-0.com")!)
+        let mission1 = makeMission(name: "mission1", rocketName: "rocket1", url: URL(string: "http://url-1.com")!)
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeLaunchLoading(with: [mission0, mission1])
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+
+        sut.simulateLaunchImageViewVisible(at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.missionPatch], "Expected first image URL requests once first view becomes visible")
+
+        sut.simulateLaunchImageViewVisible(at: 1)
+        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected second image URL requests once second view also becomes visible")
     }
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, launchLoader: LoaderSpy, companyInfoLoader: LoaderSpy) {
-        let launchLoader = LoaderSpy()
-        let companyInfoLoader = LoaderSpy()
-        let sut = LaunchesViewController(companyInfoLoader: companyInfoLoader, launchLoader: launchLoader)
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, loader: LoaderSpy) {
+        let loader = LoaderSpy()
+        let sut = LaunchesViewController(companyInfoLoader: loader, launchLoader: loader, imageLoader: loader)
 
-        trackForMemoryLeaks(launchLoader, file: file, line: line)
-        trackForMemoryLeaks(companyInfoLoader, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
 
-        return (sut, launchLoader, companyInfoLoader)
+        return (sut, loader)
     }
 
     private func assertThat(_ sut: LaunchesViewController, isRendering launch: [Launch], file: StaticString = #filePath, line: UInt = #line) {
@@ -79,33 +93,46 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.rocketInfoText, "\(launch.rocket.name)/\(launch.rocket.type)", "Expected rocket info text to be \(String(describing: "\(launch.rocket.name)/\(launch.rocket.type)")) for launch view at index (\(index))", file: file, line: line)
     }
 
-    private func makeMission(name: String, rocketName: String) -> Launch {
+    private func makeMission(name: String, rocketName: String, url: URL = URL(string: "http://a-url.com")!) -> Launch {
         let rocket = Rocket(name: rocketName, type: "type-\(rocketName)")
-        return Launch(missionName: name, launchDate: "2021/20/09", launchSuccess: true, rocket: rocket, links: Link(missionPatch: URL(string: "http://a-url.com")!))
+        return Launch(missionName: name, launchDate: "2021/20/09", launchSuccess: true, rocket: rocket, links: Link(missionPatch: url))
     }
 
-    class LoaderSpy: LaunchLoader, CompanyInfoLoader {
-        private var launchCompletions = [(LaunchLoader.Result) -> Void]()
-        private var companyInfoCompletions = [(CompanyInfoLoader.Result) -> Void]()
+    class LoaderSpy: LaunchLoader, CompanyInfoLoader, LaunchImageDataLoader {
+        // MARK: - LaunchLoader
+
+        private var launchRequests = [(LaunchLoader.Result) -> Void]()
 
         var loadLaunchCallCount: Int {
-            launchCompletions.count
-        }
-
-        var loadCompanyInfoCallCount: Int {
-            companyInfoCompletions.count
+            launchRequests.count
         }
 
         func load(completion: @escaping (LaunchLoader.Result) -> Void) {
-            launchCompletions.append(completion)
+            launchRequests.append(completion)
+        }
+
+        func completeLaunchLoading(with launch: [Launch] = [], at index: Int = 0) {
+            launchRequests[index](.success(launch))
+        }
+
+        // MARK: - CompanyInfoLoader
+
+        private var companyInfoRequests = [(CompanyInfoLoader.Result) -> Void]()
+
+        var loadCompanyInfoCallCount: Int {
+            companyInfoRequests.count
         }
 
         func load(completion: @escaping (CompanyInfoLoader.Result) -> Void) {
-            companyInfoCompletions.append(completion)
+            companyInfoRequests.append(completion)
         }
 
-        func completeLaunchLoading(with launch: [Launch] = [], at index: Int) {
-            launchCompletions[index](.success(launch))
+        // MARK: - LaunchImageDataLoader
+
+        private(set) var loadedImageURLs = [URL]()
+
+        func loadImageData(from url: URL) {
+            loadedImageURLs.append(url)
         }
     }
 }
@@ -123,6 +150,10 @@ private extension LaunchesViewController {
 
     private var launchImagesSection: Int {
         0
+    }
+
+    func simulateLaunchImageViewVisible(at index: Int) {
+        _ = launchImageView(at: index)
     }
 }
 
