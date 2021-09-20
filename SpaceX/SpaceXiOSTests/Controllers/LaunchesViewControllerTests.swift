@@ -7,7 +7,6 @@
 
 import SpaceX
 import SpaceXiOS
-import UIKit
 import XCTest
 
 final class LaunchesViewControllerTests: XCTestCase {
@@ -136,109 +135,5 @@ final class LaunchesViewControllerTests: XCTestCase {
     private func makeMission(name: String, rocketName: String, url: URL = URL(string: "http://a-url.com")!) -> Launch {
         let rocket = Rocket(name: rocketName, type: "type-\(rocketName)")
         return Launch(missionName: name, launchDate: "2021/20/09", launchSuccess: true, rocket: rocket, links: Link(missionPatch: url))
-    }
-
-    class LoaderSpy: LaunchLoader, CompanyInfoLoader, LaunchImageDataLoader {
-        // MARK: - LaunchLoader
-
-        private var launchRequests = [(LaunchLoader.Result) -> Void]()
-
-        var loadLaunchCallCount: Int {
-            launchRequests.count
-        }
-
-        func load(completion: @escaping (LaunchLoader.Result) -> Void) {
-            launchRequests.append(completion)
-        }
-
-        func completeLaunchLoading(with launch: [Launch] = [], at index: Int = 0) {
-            launchRequests[index](.success(launch))
-        }
-
-        // MARK: - CompanyInfoLoader
-
-        private var companyInfoRequests = [(CompanyInfoLoader.Result) -> Void]()
-
-        var loadCompanyInfoCallCount: Int {
-            companyInfoRequests.count
-        }
-
-        func load(completion: @escaping (CompanyInfoLoader.Result) -> Void) {
-            companyInfoRequests.append(completion)
-        }
-
-        // MARK: - LaunchImageDataLoader
-
-        private struct TaskSpy: LaunchImageDataLoaderTask {
-            let cancelCallback: () -> Void
-            func cancel() {
-                cancelCallback()
-            }
-        }
-
-        private var imageRequests = [(url: URL, completion: (LaunchImageDataLoader.Result) -> Void)]()
-
-        var loadedImageURLs: [URL] {
-            imageRequests.map { $0.url }
-        }
-
-        private(set) var cancelledImageURLs = [URL]()
-
-        func loadImageData(from url: URL, completion: @escaping (LaunchImageDataLoader.Result) -> Void) -> LaunchImageDataLoaderTask {
-            imageRequests.append((url, completion))
-
-            return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
-        }
-
-        func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
-            imageRequests[index].completion(.success(imageData))
-        }
-    }
-}
-
-private extension LaunchesViewController {
-    func numberOfRenderedLaunchImageViews() -> Int {
-        tableView.numberOfRows(inSection: launchImagesSection)
-    }
-
-    func launchImageView(at row: Int) -> UITableViewCell? {
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: launchImagesSection)
-        return ds?.tableView(tableView, cellForRowAt: index)
-    }
-
-    private var launchImagesSection: Int {
-        0
-    }
-
-    @discardableResult
-    func simulateLaunchImageViewVisible(at index: Int) -> LaunchCell? {
-        launchImageView(at: index) as? LaunchCell
-    }
-
-    func simulateLaunchImageViewNotVisible(at row: Int) {
-        let view = simulateLaunchImageViewVisible(at: row)
-
-        let delegate = tableView.delegate
-        let index = IndexPath(row: row, section: launchImagesSection)
-        delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
-    }
-}
-
-private extension LaunchCell {
-    var missionNameText: String? {
-        missionName.text
-    }
-
-    var missionDateText: String? {
-        missionDate.text
-    }
-
-    var rocketInfoText: String? {
-        rocketInfo.text
-    }
-
-    var renderedImage: Data? {
-        missionImage.image?.pngData()
     }
 }

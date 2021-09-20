@@ -8,15 +8,6 @@
 import SpaceX
 import UIKit
 
-public protocol LaunchImageDataLoaderTask {
-    func cancel()
-}
-
-public protocol LaunchImageDataLoader {
-    typealias Result = Swift.Result<Data, Error>
-    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> LaunchImageDataLoaderTask
-}
-
 public final class LaunchesViewController: UITableViewController {
     private var companyInfoLoader: CompanyInfoLoader?
     private var launchLoader: LaunchLoader?

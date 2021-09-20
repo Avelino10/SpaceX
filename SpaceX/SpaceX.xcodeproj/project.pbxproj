@@ -30,6 +30,10 @@
 		FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48026F8833D008B8443 /* LaunchesViewController.swift */; };
 		FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F48526F8854A008B8443 /* LaunchCell.swift */; };
 		FD78F49C26F896FE008B8443 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */; };
+		FD78F4A826F89778008B8443 /* LaunchesViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4A726F89778008B8443 /* LaunchesViewController+TestHelpers.swift */; };
+		FD78F4B026F897AE008B8443 /* LaunchCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */; };
+		FD78F4B526F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */; };
+		FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +101,10 @@
 		FD78F48026F8833D008B8443 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
 		FD78F48526F8854A008B8443 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
+		FD78F4A726F89778008B8443 /* LaunchesViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchCell+TestHelpers.swift"; sourceTree = "<group>"; };
+		FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,9 +278,10 @@
 		FD78F44326F652BE008B8443 /* SpaceXiOS */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F4BC26F89889008B8443 /* Launch Image Loader */,
+				FD78F4A526F89751008B8443 /* Views */,
+				FD78F4A426F8974C008B8443 /* Controllers */,
 				FD78F44526F652BE008B8443 /* Info.plist */,
-				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
-				FD78F48526F8854A008B8443 /* LaunchCell.swift */,
 			);
 			path = SpaceXiOS;
 			sourceTree = "<group>";
@@ -280,9 +289,9 @@
 		FD78F44E26F652BE008B8443 /* SpaceXiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F4A326F89741008B8443 /* Controllers */,
 				FD78F49A26F896F0008B8443 /* Helpers */,
 				FD78F45126F652BE008B8443 /* Info.plist */,
-				FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */,
 			);
 			path = SpaceXiOSTests;
 			sourceTree = "<group>";
@@ -300,6 +309,49 @@
 				FD78F49B26F896FE008B8443 /* UIImage+TestHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FD78F4A326F89741008B8443 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F4A626F89764008B8443 /* Helpers */,
+				FD78F40526F62576008B8443 /* LaunchesViewControllerTests.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FD78F4A426F8974C008B8443 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FD78F4A526F89751008B8443 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F48526F8854A008B8443 /* LaunchCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD78F4A626F89764008B8443 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F4A726F89778008B8443 /* LaunchesViewController+TestHelpers.swift */,
+				FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */,
+				FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FD78F4BC26F89889008B8443 /* Launch Image Loader */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F4BD26F8989C008B8443 /* LaunchImageDataLoader.swift */,
+			);
+			path = "Launch Image Loader";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */,
 				FD78F48626F8854A008B8443 /* LaunchCell.swift in Sources */,
 				FD78F48126F8833D008B8443 /* LaunchesViewController.swift in Sources */,
 			);
@@ -518,7 +571,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F40626F62576008B8443 /* LaunchesViewControllerTests.swift in Sources */,
+				FD78F4A826F89778008B8443 /* LaunchesViewController+TestHelpers.swift in Sources */,
 				FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				FD78F4B526F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift in Sources */,
+				FD78F4B026F897AE008B8443 /* LaunchCell+TestHelpers.swift in Sources */,
 				FD78F49C26F896FE008B8443 /* UIImage+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
