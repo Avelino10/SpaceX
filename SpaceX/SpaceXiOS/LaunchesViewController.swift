@@ -8,8 +8,12 @@
 import SpaceX
 import UIKit
 
+public protocol LaunchImageDataLoaderTask {
+    func cancel()
+}
+
 public protocol LaunchImageDataLoader {
-    func loadImageData(from url: URL)
+    func loadImageData(from url: URL) -> LaunchImageDataLoaderTask
 }
 
 public final class LaunchesViewController: UITableViewController {
@@ -17,6 +21,7 @@ public final class LaunchesViewController: UITableViewController {
     private var launchLoader: LaunchLoader?
     private var imageLoader: LaunchImageDataLoader?
     private var tableModel = [Launch]()
+    private var tasks = [IndexPath: LaunchImageDataLoaderTask]()
 
     public convenience init(companyInfoLoader: CompanyInfoLoader, launchLoader: LaunchLoader, imageLoader: LaunchImageDataLoader) {
         self.init()
@@ -48,8 +53,13 @@ public final class LaunchesViewController: UITableViewController {
         cell.missionDate.text = cellModel.launchDate
         cell.rocketInfo.text = "\(cellModel.rocket.name)/\(cellModel.rocket.type)"
 
-        imageLoader?.loadImageData(from: cellModel.links.missionPatch)
+        tasks[indexPath] = imageLoader?.loadImageData(from: cellModel.links.missionPatch)
 
         return cell
+    }
+
+    override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        tasks[indexPath]?.cancel()
+        tasks[indexPath] = nil
     }
 }

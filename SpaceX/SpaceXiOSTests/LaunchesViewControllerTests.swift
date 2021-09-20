@@ -57,6 +57,22 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected second image URL requests once second view also becomes visible")
     }
 
+    func test_launchImageView_cancelsImageLoadingWhenNotVisibleAnymore() {
+        let mission0 = makeMission(name: "mission0", rocketName: "rocket0", url: URL(string: "http://url-0.com")!)
+        let mission1 = makeMission(name: "mission1", rocketName: "rocket1", url: URL(string: "http://url-1.com")!)
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeLaunchLoading(with: [mission0, mission1])
+        XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled image URL requests until image is not visible")
+
+        sut.simulateLaunchImageViewNotVisible(at: 0)
+        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.missionPatch], "Expected on cancelled image URL request once first image is not visible anymore")
+
+        sut.simulateLaunchImageViewNotVisible(at: 1)
+        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected two cancelled image URL requests once second image is also not visible anymore")
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LaunchesViewController, loader: LoaderSpy) {
@@ -129,10 +145,20 @@ final class LaunchesViewControllerTests: XCTestCase {
 
         // MARK: - LaunchImageDataLoader
 
-        private(set) var loadedImageURLs = [URL]()
+        private struct TaskSpy: LaunchImageDataLoaderTask {
+            let cancelCallback: () -> Void
+            func cancel() {
+                cancelCallback()
+            }
+        }
 
-        func loadImageData(from url: URL) {
+        private(set) var loadedImageURLs = [URL]()
+        private(set) var cancelledImageURLs = [URL]()
+
+        func loadImageData(from url: URL) -> LaunchImageDataLoaderTask {
             loadedImageURLs.append(url)
+
+            return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
         }
     }
 }
@@ -152,8 +178,17 @@ private extension LaunchesViewController {
         0
     }
 
-    func simulateLaunchImageViewVisible(at index: Int) {
-        _ = launchImageView(at: index)
+    @discardableResult
+    func simulateLaunchImageViewVisible(at index: Int) -> LaunchCell? {
+        launchImageView(at: index) as? LaunchCell
+    }
+
+    func simulateLaunchImageViewNotVisible(at row: Int) {
+        let view = simulateLaunchImageViewVisible(at: row)
+
+        let delegate = tableView.delegate
+        let index = IndexPath(row: row, section: launchImagesSection)
+        delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
     }
 }
 
