@@ -29,7 +29,13 @@ final class LaunchImageCellController {
         task = imageLoader.loadImageData(from: model.links.missionPatch) { [weak cell] result in
             let data = try? result.get()
             let image = data.map(UIImage.init) ?? nil
-            cell?.missionImage.image = image
+            if Thread.isMainThread {
+                cell?.missionImage.image = image
+            } else {
+                DispatchQueue.main.async {
+                    cell?.missionImage.image = image
+                }
+            }
         }
 
         return cell!

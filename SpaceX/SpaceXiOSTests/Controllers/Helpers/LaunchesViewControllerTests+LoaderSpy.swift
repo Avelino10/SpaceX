@@ -39,6 +39,10 @@ extension LaunchesViewControllerTests {
             companyInfoRequests.append(completion)
         }
 
+        func completeInfoLoading(with companyInfo: CompanyInfo, at index: Int = 0) {
+            companyInfoRequests[index](.success(companyInfo))
+        }
+
         // MARK: - LaunchImageDataLoader
 
         private struct TaskSpy: LaunchImageDataLoaderTask {

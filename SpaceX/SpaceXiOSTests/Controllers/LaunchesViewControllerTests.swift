@@ -18,7 +18,7 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, localized("LAUNCH_VIEW_TITLE"))
     }
 
-    func test_init_doesNotLoadLaunches() {
+    func test_init_doesNotLoadContent() {
         let (_, loader) = makeSUT()
 
         XCTAssertEqual(loader.loadLaunchCallCount, 0)
@@ -46,6 +46,19 @@ final class LaunchesViewControllerTests: XCTestCase {
 
         loader.completeLaunchLoading(with: [mission0, mission1, mission2, mission3])
         assertThat(sut, isRendering: [mission0, mission1, mission2, mission3])
+    }
+
+    func test_loadCompanyInfoCompletion_rendersSuccessfullyLoadedInfo() {
+        let companyInfo = CompanyInfo(companyName: "name", founderName: "founder", year: 2021, employees: 100, launchSites: 1, valuation: 100)
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeInfoLoading(with: companyInfo)
+
+        let newViewDescription = sut.companyInfoHeaderDescription()
+        let completeString = String(format: localized("LAUNCH_HEADER_DESCRIPTION"), companyInfo.companyName, companyInfo.founderName, companyInfo.year, companyInfo.employees, companyInfo.launchSites, companyInfo.valuation)
+
+        XCTAssertEqual(newViewDescription, completeString)
     }
 
     func test_launchImageView_loadsImageURLWhenVisible() {

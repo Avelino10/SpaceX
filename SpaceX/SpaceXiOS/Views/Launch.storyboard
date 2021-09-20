@@ -202,6 +202,18 @@
                                         <constraint firstItem="5ah-Bt-g6c" firstAttribute="top" secondItem="R1s-Tf-zsv" secondAttribute="topMargin" priority="999" constant="6" id="t3x-yC-SPy"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="launchStatus" destination="BRP-te-5ke" id="P27-kS-PIq"/>
+                                    <outlet property="missionDate" destination="RwO-GU-BRq" id="2re-xV-pQX"/>
+                                    <outlet property="missionDateTimeTitle" destination="ntS-6U-X4X" id="o7B-gM-jFs"/>
+                                    <outlet property="missionDays" destination="h6Q-X3-Srj" id="Ahe-PM-nXc"/>
+                                    <outlet property="missionDifferenceDaysTitle" destination="WrG-CV-Bns" id="zlX-JK-Leu"/>
+                                    <outlet property="missionImage" destination="rpj-dn-uSa" id="yOF-PQ-MIE"/>
+                                    <outlet property="missionName" destination="ViW-Gp-mK8" id="xjM-7g-y3T"/>
+                                    <outlet property="missionRocketTitle" destination="kJx-sP-05W" id="RTZ-Od-RgX"/>
+                                    <outlet property="missionTitle" destination="6ZQ-bb-L7n" id="W8T-kA-MrV"/>
+                                    <outlet property="rocketInfo" destination="Izs-ty-TJT" id="sPA-eF-2TP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -209,6 +221,11 @@
                             <outlet property="delegate" destination="ojh-dZ-vcV" id="ehx-lb-nAl"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="headerCompany" destination="csA-PD-eH6" id="Xrt-Ef-msp"/>
+                        <outlet property="headerCompanyDescription" destination="hUW-9Y-LFp" id="1U5-ag-vjD"/>
+                        <outlet property="headerLaunches" destination="DqR-Cd-lhQ" id="tCa-11-rZY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wto-TJ-36S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

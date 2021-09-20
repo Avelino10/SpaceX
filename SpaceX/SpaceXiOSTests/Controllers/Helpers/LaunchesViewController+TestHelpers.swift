@@ -35,4 +35,8 @@ extension LaunchesViewController {
         let index = IndexPath(row: row, section: launchImagesSection)
         delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
     }
+
+    func companyInfoHeaderDescription() -> String {
+        headerCompanyDescription.text!
+    }
 }
