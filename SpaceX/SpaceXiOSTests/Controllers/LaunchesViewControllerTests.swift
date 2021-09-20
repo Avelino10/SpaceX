@@ -10,6 +10,14 @@ import SpaceXiOS
 import XCTest
 
 final class LaunchesViewControllerTests: XCTestCase {
+    func test_launchView_hasTitle() {
+        let (sut, _) = makeSUT()
+
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(sut.title, localized("LAUNCH_VIEW_TITLE"))
+    }
+
     func test_init_doesNotLoadLaunches() {
         let (_, loader) = makeSUT()
 

@@ -37,6 +37,9 @@
 		FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */; };
 		FD78F4D726F89C5B008B8443 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD78F4D626F89C5B008B8443 /* Launch.storyboard */; };
 		FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */; };
+		FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */; };
+		FD78F4EE26F8CAA2008B8443 /* Launch.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD78F4ED26F8CAA2008B8443 /* Launch.strings */; };
+		FD78F4F626F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,9 @@
 		FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageCellController.swift; sourceTree = "<group>"; };
 		FD78F4D626F89C5B008B8443 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchUIComposer.swift; sourceTree = "<group>"; };
+		FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Dequeueing.swift"; sourceTree = "<group>"; };
+		FD78F4ED26F8CAA2008B8443 /* Launch.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Launch.strings; sourceTree = "<group>"; };
+		FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LaunchesViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +290,7 @@
 		FD78F44326F652BE008B8443 /* SpaceXiOS */ = {
 			isa = PBXGroup;
 			children = (
+				FD78F4EC26F8CA94008B8443 /* Localization */,
 				FD78F4DB26F8AFA5008B8443 /* Composers */,
 				FD78F4BC26F89889008B8443 /* Launch Image Loader */,
 				FD78F4A526F89751008B8443 /* Views */,
@@ -341,6 +348,7 @@
 			children = (
 				FD78F48526F8854A008B8443 /* LaunchCell.swift */,
 				FD78F4D626F89C5B008B8443 /* Launch.storyboard */,
+				FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +359,7 @@
 				FD78F4A726F89778008B8443 /* LaunchesViewController+TestHelpers.swift */,
 				FD78F4AF26F897AE008B8443 /* LaunchCell+TestHelpers.swift */,
 				FD78F4B426F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift */,
+				FD78F4F526F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -369,6 +378,14 @@
 				FD78F4DC26F8AFCB008B8443 /* LaunchUIComposer.swift */,
 			);
 			path = Composers;
+			sourceTree = "<group>";
+		};
+		FD78F4EC26F8CA94008B8443 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				FD78F4ED26F8CAA2008B8443 /* Launch.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,6 +550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD78F4D726F89C5B008B8443 /* Launch.storyboard in Resources */,
+				FD78F4EE26F8CAA2008B8443 /* Launch.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */,
 				FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */,
 				FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */,
 				FD78F4BE26F8989C008B8443 /* LaunchImageDataLoader.swift in Sources */,
@@ -595,6 +614,7 @@
 				FD78F47C26F881AB008B8443 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				FD78F4B526F897FA008B8443 /* LaunchesViewControllerTests+LoaderSpy.swift in Sources */,
 				FD78F4B026F897AE008B8443 /* LaunchCell+TestHelpers.swift in Sources */,
+				FD78F4F626F8CB9F008B8443 /* LaunchesViewControllerTests+Localization.swift in Sources */,
 				FD78F49C26F896FE008B8443 /* UIImage+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

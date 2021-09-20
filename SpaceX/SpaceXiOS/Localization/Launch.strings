@@ -1,0 +1,18 @@
+/* 
+  Launch.strings
+  SpaceX
+
+  Created by Avelino Rodrigues on 20/09/2021.
+  
+*/
+
+"LAUNCH_VIEW_TITLE" = "SpaceX";
+"LAUNCH_HEADER_TITLE" = "COMPANY";
+"LAUNCH_HEADER_DESCRIPTION" = "%@ was founded by %@ in %s. It has now %s employees, %s launch sites, and is valued at USD %d";
+"LAUNCH_LAUNCHES_TITLE" = "LAUNCHES";
+"LAUNCH_LAUNCHES_MISSION_TITLE" = "Mission:";
+"LAUNCH_LAUNCHES_DATE_TITLE" = "Date/time:";
+"LAUNCH_LAUNCHES_DATE_VALUE" = "%@ at %@";
+"LAUNCH_LAUNCHES_ROCKET_INFO_TITLE" = "Rocket:";
+"LAUNCH_LAUNCHES_ROCKET_INFO_VALUE" = "%@/%@";
+"LAUNCH_LAUNCHES_DATE_DIFFERENCE_TITLE" = "Days %@ now:";

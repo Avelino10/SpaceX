@@ -20,20 +20,19 @@ final class LaunchImageCellController {
     }
 
     func view(in tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LaunchCell") as! LaunchCell
-        self.cell = cell
+        cell = tableView.dequeueReusableCell()
 
-        cell.missionName.text = model.missionName
-        cell.missionDate.text = model.launchDate
-        cell.rocketInfo.text = "\(model.rocket.name)/\(model.rocket.type)"
-        cell.missionImage.image = nil
+        cell?.missionName.text = model.missionName
+        cell?.missionDate.text = model.launchDate
+        cell?.rocketInfo.text = "\(model.rocket.name)/\(model.rocket.type)"
+        cell?.missionImage.image = nil
         task = imageLoader.loadImageData(from: model.links.missionPatch) { [weak cell] result in
             let data = try? result.get()
             let image = data.map(UIImage.init) ?? nil
             cell?.missionImage.image = image
         }
 
-        return cell
+        return cell!
     }
 
     deinit {
