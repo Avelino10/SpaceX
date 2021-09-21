@@ -119,6 +119,7 @@ class RemoteLaunchLoaderTests: XCTestCase {
         let launch1 = Launch(missionName: name, launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(missionPatch: URL(string: "http://a-url.com")!))
 
         let launch1JSON = [
+            "flight_number": 1,
             "mission_name": launch1.missionName,
             "launch_date_utc": launch1.launchDate,
             "launch_success": launch1.launchSuccess,

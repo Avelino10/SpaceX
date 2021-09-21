@@ -23,8 +23,15 @@ final class LaunchImageCellController {
         cell = tableView.dequeueReusableCell()
 
         cell?.missionName.text = model.missionName
-        cell?.missionDate.text = model.launchDate
-        cell?.rocketInfo.text = "\(model.rocket.name)/\(model.rocket.type)"
+        cell?.missionDate.text = getDateOfLaunch(from: model.launchDate)
+        cell?.rocketInfo.text = String(format: localize(key: "LAUNCH_LAUNCHES_ROCKET_INFO_VALUE"), model.rocket.name, model.rocket.type)
+        cell?.launchStatus.image = model.launchSuccess ? UIImage(systemName: "checkmark") : UIImage(systemName: "xmark")
+
+        let daysDifference = getDaysDifference(from: model.launchDate)
+        let daysDifferenceTitle = String(format: localize(key: "LAUNCH_LAUNCHES_DATE_DIFFERENCE_TITLE"), daysDifference < 0 ? "since" : "from")
+        cell?.missionDifferenceDaysTitle.text = daysDifferenceTitle
+        cell?.missionDays.text = "\(abs(daysDifference))"
+
         cell?.missionImage.image = nil
         task = imageLoader.loadImageData(from: model.links.missionPatch) { [weak cell] result in
             let data = try? result.get()
@@ -44,5 +51,42 @@ final class LaunchImageCellController {
     deinit {
         cell = nil
         task?.cancel()
+    }
+
+    private func localize(key: String) -> String {
+        NSLocalizedString(key, tableName: "Launch", bundle: Bundle(for: LaunchImageCellController.self), comment: "")
+    }
+
+    private func getDateOfLaunch(from launchDate: String) -> String {
+        let dateFormatter = getDateFormat()
+        let date = dateFormatter.date(from: launchDate) ?? Date()
+
+        let printDateFormatter = DateFormatter()
+        printDateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let printTimeFormatter = DateFormatter()
+        printTimeFormatter.dateFormat = "HH:mm"
+
+        return String(format: localize(key: "LAUNCH_LAUNCHES_DATE_VALUE"), printDateFormatter.string(from: date), printTimeFormatter.string(from: date))
+    }
+
+    private func getDaysDifference(from launchDate: String) -> Int {
+        let dateFormatter = getDateFormat()
+        let date = dateFormatter.date(from: launchDate) ?? Date()
+
+        let calendar = Calendar.current
+        let dateNow = calendar.startOfDay(for: Date())
+        let dateLaunchDate = calendar.startOfDay(for: date)
+
+        let components = calendar.dateComponents([.day], from: dateNow, to: dateLaunchDate)
+
+        return components.day ?? 0
+    }
+
+    private func getDateFormat() -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+
+        return dateFormatter
     }
 }
