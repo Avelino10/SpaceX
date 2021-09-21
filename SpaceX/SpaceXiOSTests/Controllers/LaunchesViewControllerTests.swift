@@ -71,10 +71,10 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
 
         sut.simulateLaunchImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.missionPatch], "Expected first image URL requests once first view becomes visible")
+        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.image], "Expected first image URL requests once first view becomes visible")
 
         sut.simulateLaunchImageViewVisible(at: 1)
-        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected second image URL requests once second view also becomes visible")
+        XCTAssertEqual(loader.loadedImageURLs, [mission0.links.image, mission1.links.image], "Expected second image URL requests once second view also becomes visible")
     }
 
     func test_launchImageView_cancelsImageLoadingWhenNotVisibleAnymore() {
@@ -87,10 +87,10 @@ final class LaunchesViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled image URL requests until image is not visible")
 
         sut.simulateLaunchImageViewNotVisible(at: 0)
-        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.missionPatch], "Expected on cancelled image URL request once first image is not visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.image], "Expected on cancelled image URL request once first image is not visible anymore")
 
         sut.simulateLaunchImageViewNotVisible(at: 1)
-        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.missionPatch, mission1.links.missionPatch], "Expected two cancelled image URL requests once second image is also not visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [mission0.links.image, mission1.links.image], "Expected two cancelled image URL requests once second image is also not visible anymore")
     }
 
     func test_launchImageView_rendersImageLoadedFromURL() {
@@ -148,13 +148,23 @@ final class LaunchesViewControllerTests: XCTestCase {
 
         XCTAssertEqual(cell.missionNameText, launch.missionName, "Expected name text to be \(String(describing: launch.missionName)) for launch view at index (\(index))", file: file, line: line)
 
-        XCTAssertEqual(cell.missionDateText, launch.launchDate, "Expected date text to be \(String(describing: launch.launchDate)) for launch view at index (\(index))", file: file, line: line)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = dateFormatter.date(from: launch.launchDate) ?? Date()
+
+        let printDateFormatter = DateFormatter()
+        printDateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let printTimeFormatter = DateFormatter()
+        printTimeFormatter.dateFormat = "HH:mm"
+
+        XCTAssertEqual(cell.missionDateText, "\(printDateFormatter.string(from: date)) at \(printTimeFormatter.string(from: date))", "Expected date text to be \(String(describing: launch.launchDate)) for launch view at index (\(index))", file: file, line: line)
 
         XCTAssertEqual(cell.rocketInfoText, "\(launch.rocket.name)/\(launch.rocket.type)", "Expected rocket info text to be \(String(describing: "\(launch.rocket.name)/\(launch.rocket.type)")) for launch view at index (\(index))", file: file, line: line)
     }
 
     private func makeMission(name: String, rocketName: String, url: URL = URL(string: "http://a-url.com")!) -> Launch {
         let rocket = Rocket(name: rocketName, type: "type-\(rocketName)")
-        return Launch(missionName: name, launchDate: "2021/20/09", launchSuccess: true, rocket: rocket, links: Link(missionPatch: url))
+        return Launch(missionName: name, launchDate: "2008-08-02T03:34:00.000Z", launchSuccess: true, rocket: rocket, links: Link(image: url, article: url, wikipedia: url, video: url))
     }
 }

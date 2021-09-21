@@ -50,7 +50,7 @@ private struct APILaunch: Decodable {
 
     var launch: Launch {
         let rocket = Rocket(name: self.rocket?.rocket_name ?? "", type: self.rocket?.rocket_type ?? "")
-        let link = Link(missionPatch: links?.mission_patch ?? URL(string: "http://a-wrong-url.com")!)
+        let link = Link(image: links?.mission_patch, article: links?.article_link, wikipedia: links?.wikipedia, video: links?.video_link)
 
         return Launch(missionName: mission_name ?? "", launchDate: launch_date_utc ?? "", launchSuccess: launch_success ?? false, rocket: rocket, links: link)
     }
@@ -63,4 +63,7 @@ private struct APIRocket: Decodable {
 
 private struct APILink: Decodable {
     let mission_patch: URL?
+    let article_link: URL?
+    let wikipedia: URL?
+    let video_link: URL?
 }

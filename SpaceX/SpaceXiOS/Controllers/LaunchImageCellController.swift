@@ -33,19 +33,57 @@ final class LaunchImageCellController {
         cell?.missionDays.text = "\(abs(daysDifference))"
 
         cell?.missionImage.image = nil
-        task = imageLoader.loadImageData(from: model.links.missionPatch) { [weak cell] result in
-            let data = try? result.get()
-            let image = data.map(UIImage.init) ?? nil
-            if Thread.isMainThread {
-                cell?.missionImage.image = image
-            } else {
-                DispatchQueue.main.async {
+        if let imageURL = model.links.image {
+            task = imageLoader.loadImageData(from: imageURL) { [weak cell] result in
+                let data = try? result.get()
+                let image = data.map(UIImage.init) ?? nil
+                if Thread.isMainThread {
                     cell?.missionImage.image = image
+                } else {
+                    DispatchQueue.main.async {
+                        cell?.missionImage.image = image
+                    }
                 }
             }
         }
 
         return cell!
+    }
+
+    func select(callback: (UIViewController) -> Void) {
+        let ac = UIAlertController(title: model.missionName, message: nil, preferredStyle: .actionSheet)
+
+        if let articleURL = model.links.article {
+            let action1 = UIAlertAction(title: "Article", style: .default) { _ in
+                UIApplication.shared.open(articleURL)
+            }
+            ac.addAction(action1)
+        }
+
+        if let wikipediaURL = model.links.wikipedia {
+            let action2 = UIAlertAction(title: "Wikipedia", style: .default) { _ in
+                UIApplication.shared.open(wikipediaURL)
+            }
+            ac.addAction(action2)
+        }
+
+        if let videoURL = model.links.video {
+            let action3 = UIAlertAction(title: "Video", style: .default) { _ in
+                UIApplication.shared.open(videoURL)
+            }
+
+            ac.addAction(action3)
+        }
+
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            ac.dismiss(animated: true)
+        }
+
+        ac.addAction(actionCancel)
+
+        if ac.actions.count > 1 {
+            callback(ac)
+        }
     }
 
     deinit {

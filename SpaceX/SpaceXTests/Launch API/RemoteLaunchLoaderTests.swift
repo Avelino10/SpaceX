@@ -116,7 +116,8 @@ class RemoteLaunchLoaderTests: XCTestCase {
     }
 
     private func makeLaunch(name: String, rocketName: String) -> (model: Launch, json: [String: Any]) {
-        let launch1 = Launch(missionName: name, launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(missionPatch: URL(string: "http://a-url.com")!))
+        let url = URL(string: "http://a-url.com")!
+        let launch1 = Launch(missionName: name, launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(image: url, article: url, wikipedia: url, video: url))
 
         let launch1JSON = [
             "flight_number": 1,
@@ -128,7 +129,10 @@ class RemoteLaunchLoaderTests: XCTestCase {
                 "rocket_type": launch1.rocket.type,
             ],
             "links": [
-                "mission_patch": launch1.links.missionPatch.absoluteString,
+                "mission_patch": launch1.links.image?.absoluteString,
+                "article_link": launch1.links.image?.absoluteString,
+                "wikipedia": launch1.links.image?.absoluteString,
+                "video_link": launch1.links.image?.absoluteString,
             ],
         ] as [String: Any]
 

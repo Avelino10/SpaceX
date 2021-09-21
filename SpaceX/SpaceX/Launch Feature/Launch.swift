@@ -8,10 +8,16 @@
 import Foundation
 
 public struct Link: Equatable {
-    public let missionPatch: URL
+    public let image: URL?
+    public let article: URL?
+    public let wikipedia: URL?
+    public let video: URL?
 
-    public init(missionPatch: URL) {
-        self.missionPatch = missionPatch
+    public init(image: URL?, article: URL?, wikipedia: URL?, video: URL?) {
+        self.image = image
+        self.article = article
+        self.wikipedia = wikipedia
+        self.video = video
     }
 }
 

@@ -69,6 +69,12 @@ public final class LaunchesViewController: UITableViewController {
         removeCellController(forRowAt: indexPath)
     }
 
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellController(forRowAt: indexPath).select { vc in
+            present(vc, animated: true)
+        }
+    }
+
     private func cellController(forRowAt indexPath: IndexPath) -> LaunchImageCellController {
         let cellModel = tableModel[indexPath.row]
         let cellController = LaunchImageCellController(model: cellModel, imageLoader: imageLoader!)
