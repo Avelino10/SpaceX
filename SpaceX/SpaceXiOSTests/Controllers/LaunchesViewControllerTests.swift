@@ -165,6 +165,6 @@ final class LaunchesViewControllerTests: XCTestCase {
 
     private func makeMission(name: String, rocketName: String, url: URL = URL(string: "http://a-url.com")!) -> Launch {
         let rocket = Rocket(name: rocketName, type: "type-\(rocketName)")
-        return Launch(missionName: name, launchDate: "2008-08-02T03:34:00.000Z", launchSuccess: true, rocket: rocket, links: Link(image: url, article: url, wikipedia: url, video: url))
+        return Launch(missionName: name, launchYear: "2006", launchDate: "2008-08-02T03:34:00.000Z", launchSuccess: true, rocket: rocket, links: Link(image: url, article: url, wikipedia: url, video: url))
     }
 }

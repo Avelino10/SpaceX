@@ -33,13 +33,15 @@ public struct Rocket: Equatable {
 
 public struct Launch: Equatable {
     public let missionName: String
+    public let launchYear: String
     public let launchDate: String
     public let launchSuccess: Bool
     public let rocket: Rocket
     public let links: Link
 
-    public init(missionName: String, launchDate: String, launchSuccess: Bool, rocket: Rocket, links: Link) {
+    public init(missionName: String, launchYear: String, launchDate: String, launchSuccess: Bool, rocket: Rocket, links: Link) {
         self.missionName = missionName
+        self.launchYear = launchYear
         self.launchDate = launchDate
         self.launchSuccess = launchSuccess
         self.rocket = rocket

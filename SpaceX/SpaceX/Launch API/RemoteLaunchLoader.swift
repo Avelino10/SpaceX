@@ -43,6 +43,7 @@ public class RemoteLaunchLoader: LaunchLoader {
 
 private struct APILaunch: Decodable {
     let mission_name: String?
+    let launch_year: String?
     let launch_date_utc: String?
     let launch_success: Bool?
     let rocket: APIRocket?
@@ -52,7 +53,7 @@ private struct APILaunch: Decodable {
         let rocket = Rocket(name: self.rocket?.rocket_name ?? "", type: self.rocket?.rocket_type ?? "")
         let link = Link(image: links?.mission_patch, article: links?.article_link, wikipedia: links?.wikipedia, video: links?.video_link)
 
-        return Launch(missionName: mission_name ?? "", launchDate: launch_date_utc ?? "", launchSuccess: launch_success ?? false, rocket: rocket, links: link)
+        return Launch(missionName: mission_name ?? "", launchYear: launch_year ?? "", launchDate: launch_date_utc ?? "", launchSuccess: launch_success ?? false, rocket: rocket, links: link)
     }
 }
 

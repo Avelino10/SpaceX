@@ -43,6 +43,7 @@
 		FD78F50526F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */; };
 		FD78F51226F8D943008B8443 /* RemoteLaunchImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F51126F8D943008B8443 /* RemoteLaunchImageDataLoader.swift */; };
 		FD78F51726F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F51626F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift */; };
+		FDE4CACA26FA197A001F1424 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4CAC926FA197A001F1424 /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		FD78F50426F8D56A008B8443 /* RemoteLaunchImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchImageDataLoaderTests.swift; sourceTree = "<group>"; };
 		FD78F51126F8D943008B8443 /* RemoteLaunchImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchImageDataLoader.swift; sourceTree = "<group>"; };
 		FD78F51626F8DCE5008B8443 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
+		FDE4CAC926FA197A001F1424 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 			children = (
 				FD78F48026F8833D008B8443 /* LaunchesViewController.swift */,
 				FD78F4C526F898D1008B8443 /* LaunchImageCellController.swift */,
+				FDE4CAC926FA197A001F1424 /* FilterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE4CACA26FA197A001F1424 /* FilterViewController.swift in Sources */,
 				FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */,
 				FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */,
 				FD78F4C626F898D1008B8443 /* LaunchImageCellController.swift in Sources */,

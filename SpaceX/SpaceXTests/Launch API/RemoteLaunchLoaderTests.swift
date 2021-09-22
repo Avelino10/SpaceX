@@ -67,9 +67,9 @@ class RemoteLaunchLoaderTests: XCTestCase {
     func test_load_deliversLaunchOn200HTTPResponseWithValidJSON() {
         let (sut, client) = makeSUT()
 
-        let launch1 = makeLaunch(name: "Missin1", rocketName: "Rocket1")
+        let launch1 = makeLaunch(name: "Mission1", rocketName: "Rocket1")
 
-        let launch2 = makeLaunch(name: "Missin2", rocketName: "Rocket2")
+        let launch2 = makeLaunch(name: "Mission2", rocketName: "Rocket2")
 
         let launches = [launch1.model, launch2.model]
 
@@ -117,11 +117,12 @@ class RemoteLaunchLoaderTests: XCTestCase {
 
     private func makeLaunch(name: String, rocketName: String) -> (model: Launch, json: [String: Any]) {
         let url = URL(string: "http://a-url.com")!
-        let launch1 = Launch(missionName: name, launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(image: url, article: url, wikipedia: url, video: url))
+        let launch1 = Launch(missionName: name, launchYear: "2006", launchDate: "2006-03-24T22:30:00.000Z", launchSuccess: false, rocket: Rocket(name: rocketName, type: "x"), links: Link(image: url, article: url, wikipedia: url, video: url))
 
         let launch1JSON = [
             "flight_number": 1,
             "mission_name": launch1.missionName,
+            "launch_year": launch1.launchYear,
             "launch_date_utc": launch1.launchDate,
             "launch_success": launch1.launchSuccess,
             "rocket": [

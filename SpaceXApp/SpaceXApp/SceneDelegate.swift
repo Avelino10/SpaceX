@@ -25,6 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let launchesViewController = LaunchUIComposer.launchComposedWith(companyInfoLoader: companyLoader, launchLoader: launchesLoader, imageLoader: imageLoader)
 
-        window?.rootViewController = launchesViewController
+        window?.rootViewController = UINavigationController(rootViewController: launchesViewController)
     }
 }
