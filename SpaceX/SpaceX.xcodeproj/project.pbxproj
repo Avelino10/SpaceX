@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD29D75426FCBAFA00D0EF4F /* FilterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD29D75326FCBAFA00D0EF4F /* FilterViewCell.swift */; };
 		FD78F38A26F5F8C7008B8443 /* SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD78F38026F5F8C7008B8443 /* SpaceX.framework */; };
 		FD78F3A126F5FA1B008B8443 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A026F5FA1B008B8443 /* CompanyInfo.swift */; };
 		FD78F3A626F5FAB6008B8443 /* CompanyInfoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD78F3A526F5FAB6008B8443 /* CompanyInfoLoader.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FD29D75326FCBAFA00D0EF4F /* FilterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
 		FD78F38026F5F8C7008B8443 /* SpaceX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpaceX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD78F38426F5F8C7008B8443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD78F38926F5F8C7008B8443 /* SpaceXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +363,7 @@
 				FD78F48526F8854A008B8443 /* LaunchCell.swift */,
 				FD78F4D626F89C5B008B8443 /* Launch.storyboard */,
 				FD78F4E726F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift */,
+				FD29D75326FCBAFA00D0EF4F /* FilterViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD29D75426FCBAFA00D0EF4F /* FilterViewCell.swift in Sources */,
 				FDE4CACA26FA197A001F1424 /* FilterViewController.swift in Sources */,
 				FD78F4E826F8C9A4008B8443 /* UITableViewCell+Dequeueing.swift in Sources */,
 				FD78F4DD26F8AFCB008B8443 /* LaunchUIComposer.swift in Sources */,

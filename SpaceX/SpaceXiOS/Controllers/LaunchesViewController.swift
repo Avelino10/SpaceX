@@ -72,7 +72,9 @@ public final class LaunchesViewController: UITableViewController {
         let string = NSLocalizedString("LAUNCH_HEADER_DESCRIPTION", tableName: "Launch", bundle: bundle, comment: "")
         headerCompanyDescription.text = String(format: string, info.companyName, info.founderName, info.year, info.employees, info.launchSites, info.valuation)
     }
+}
 
+extension LaunchesViewController {
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableModel.count
     }
