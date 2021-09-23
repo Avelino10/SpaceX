@@ -64,7 +64,7 @@ public final class LaunchesViewController: UITableViewController {
         let filter = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         filter.years = Array(Set(originalModels.compactMap { $0.launchYear })).sorted()
         filter.delegate = self
-        present(filter, animated: true)
+        navigationController?.pushViewController(filter, animated: true)
     }
 
     private func updateDescription(info: CompanyInfo) {
@@ -105,11 +105,15 @@ public final class LaunchesViewController: UITableViewController {
 }
 
 extension LaunchesViewController: FilterDelegate {
-    func applyFilter(year: [String], order: Order) {
+    func applyFilter(year: [String], order: Order, launchSuccess: Bool?) {
         if year.isEmpty {
             tableModel = originalModels
         } else {
             tableModel = originalModels.filter { year.contains($0.launchYear) }
+        }
+
+        if let launchSuccess = launchSuccess {
+            tableModel = tableModel.filter { $0.launchSuccess == launchSuccess }
         }
 
         tableModel.sort { order == .ascending ? $0.launchDate < $1.launchDate : $0.launchDate > $1.launchDate }
